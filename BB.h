@@ -1,14 +1,13 @@
 #define tam 100
 
-typedef struct vet {
-
+typedef struct {
 	int v[tam];
 	int tam_atual;
+} BB;
 
-}Vet;
-
-
-void cria_BB(Vet* b);
-void insere_BB(Vet* b, int x);
-void retira_BB(Vet* b, int x);
-int busca_binaria(Vet* b, int chave, int ini, int fim);
+void cria_BB(BB *b);
+void destroi_BB(BB *b);
+int estavazia_BB(BB *b);
+void insere_BB(BB *b, int x);
+void retira_BB(BB *b, int x);
+int busca_binaria(BB *b, int chave, int ini, int fim);

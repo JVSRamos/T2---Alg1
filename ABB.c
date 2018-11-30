@@ -22,7 +22,7 @@ void destroi_ABB(ABB *a) {
     return;
 }
 
-int vazia(ABB a) {
+int estavazia_ABB(ABB a) {
     return a.raiz == NULL;
 }
 

@@ -57,6 +57,16 @@ int busca_LO(ListaOrd l, int x) {
     return (l.ini != NULL && l.ini->info == x);
 }
 
-int esta_vazia(ListaOrd l) {
+int estavazia_LO(ListaOrd l) {
     return (l.ini == NULL);
+}
+
+void destroi_LO(ListaOrd *l) {
+    No_LO *aux;
+    while (l->ini != NULL) {
+        aux = l->ini;
+        l->ini = l->ini->prox;
+        free(aux);
+    }
+    return;
 }

@@ -74,6 +74,6 @@ int busca_LOS(ListaOrds l, int x) {
     return (l.ini != l.sentinela && l.ini->info == x);
 }
 
-int estavazia(ListaOrds l) {
+int estavazia_LOS(ListaOrds l) {
     return (l.ini == l.sentinela);
 }
