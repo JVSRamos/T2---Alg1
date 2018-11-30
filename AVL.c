@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "avl.h"
+#include "AVL.h"
 
 void cria_AVL(AVL *a) {
     a->raiz = NULL; // cria uma arvore vazia
@@ -109,7 +109,7 @@ void DE(No_AVL **p) {
 }
 
 No_AVL *criaNo(elem info, No_AVL *esq, No_AVL *dir, int fb) {
-    No_AVL *nova = malloc(sizeof(No));
+    No_AVL *nova = malloc(sizeof(No_AVL));
     if (nova != NULL) {
         nova->info = info;
         nova->esq = esq;

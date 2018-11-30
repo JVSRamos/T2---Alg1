@@ -7,17 +7,17 @@ void cria_ABB(ABB *a) {
     return;
 }
 
-void destroiSub(No_ABB *p) {
+void destroiSub_ABB(No_ABB *p) {
     if (p == NULL)
         return;
-    destroiSub(p->esq); // destroi subarvore esquerda
-    destroiSub(p->dir); // destroi subarvore direita
+    destroiSub_ABB(p->esq); // destroi subarvore esquerda
+    destroiSub_ABB(p->dir); // destroi subarvore direita
     free(p); // apaga o raiz da subarvore
     return;
 }
 
 void destroi_ABB(ABB *a) {
-    destroiSub(a->raiz); // inicia recursao
+    destroiSub_ABB(a->raiz); // inicia recursao
     a->raiz = NULL;
     return;
 }
@@ -27,29 +27,29 @@ int estavazia_ABB(ABB a) {
 }
 
 
-int buscaSub(No_ABB *p, int x) {
+int buscaSub_ABB(No_ABB *p, int x) {
     if (p == NULL)
         return 0; // nao achou
     if (p->info == x)
         return 1; // achou
-    return (x < p->info) ? buscaSub(p->esq, x) : buscaSub(p->dir, x);
+    return (x < p->info) ? buscaSub_ABB(p->esq, x) : buscaSub_ABB(p->dir, x);
 }
 
 int busca_ABB(ABB a, int x) {
-    return buscaSub(a.raiz, x); // inicia recursao
+    return buscaSub_ABB(a.raiz, x); // inicia recursao
 }
 
 No_ABB *criaNo_ABB(int info, No_ABB *esq, No_ABB *dir) {
-    No_ABB *no_ABBva = malloc(sizeof(No_ABB));
-    if (no_ABBva != NULL) {
-        no_ABBva->info = info;
-        no_ABBva->esq = esq;
-        no_ABBva->dir = dir;
+    No_ABB *nova = malloc(sizeof(No_ABB));
+    if (nova != NULL) {
+        nova->info = info;
+        nova->esq = esq;
+        nova->dir = dir;
     }
-    return no_ABBva;
+    return nova;
 }
 
-int insercaoSub(No_ABB **p, int x) {
+int insercaoSub_ABB(No_ABB **p, int x) {
     // p => No_ABB **; *p => No_ABB *; **p => No_ABB
     if (*p == NULL) {
         *p = criaNo_ABB(x, NULL, NULL); // insere
@@ -57,14 +57,14 @@ int insercaoSub(No_ABB **p, int x) {
     }
     if ((*p)->info == x)
         return 1; // erro, achou
-    return (x < (*p)->info) ? insercaoSub(&((*p)->esq), x) : insercaoSub(&((*p)->dir), x);
+    return (x < (*p)->info) ? insercaoSub_ABB(&((*p)->esq), x) : insercaoSub_ABB(&((*p)->dir), x);
 }
 
 int insere_ABB(ABB *a, int x) {
-    return insercaoSub(&(a->raiz), x); // inicia recursao
+    return insercaoSub_ABB(&(a->raiz), x); // inicia recursao
 }
 
-int remocaoSub(No_ABB **p, int x) {
+int remocaoSub_ABB(No_ABB **p, int x) {
     // p => No_ABB **; *p => No_ABB *; **p => No_ABB
     int numFilhos = 0;
     No_ABB *aux, *paiAux;
@@ -94,12 +94,12 @@ int remocaoSub(No_ABB **p, int x) {
                     aux = aux->dir;
                 }
                 (*p)->info = aux->info; // copia info
-                return (paiAux->esq == aux) ? remocaoSub(&(paiAux->esq),aux->info) : remocaoSub(&(paiAux->dir),aux->info); // apaga aux e atualiza encadeamento
+                return (paiAux->esq == aux) ? remocaoSub_ABB(&(paiAux->esq),aux->info) : remocaoSub_ABB(&(paiAux->dir),aux->info); // apaga aux e atualiza encadeamento
         }
     }
-    return (x < (*p)->info) ? remocaoSub(&((*p)->esq), x) : remocaoSub(&((*p)->dir), x);
+    return (x < (*p)->info) ? remocaoSub_ABB(&((*p)->esq), x) : remocaoSub_ABB(&((*p)->dir), x);
 }
 
 int remove_ABB(ABB *a, int x) {
-    return remocaoSub(&(a->raiz), x); // inicia recursao
+    return remocaoSub_ABB(&(a->raiz), x); // inicia recursao
 }
