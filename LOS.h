@@ -9,7 +9,7 @@ typedef struct {
 
 int cria_LOS(ListaOrds *l);
 void destroi_LOS(ListaOrds *l);
+int estavazia_LOS(ListaOrds l);
 int insere_LOS(ListaOrds *l, int x);
 int remove_LOS(ListaOrds *l, int x);
 int busca_LOS(ListaOrds l, int x);
-int estavazia(ListaOrds l);

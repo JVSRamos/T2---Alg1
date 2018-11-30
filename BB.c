@@ -1,10 +1,10 @@
 #include "BB.h"
 
-void cria_BB(Vet* b) {
+void cria_BB(BB *b) {
 	b->tam_atual = -1;
 }
 
-int busca_binaria(Vet* b, int chave, int ini, int fim) {
+int busca_binaria(BB *b, int chave, int ini, int fim) {
 
 	
 	if (ini > fim) return -1;
@@ -22,12 +22,12 @@ int busca_binaria(Vet* b, int chave, int ini, int fim) {
 	
 }
 
-void insere_BB(Vet* b, int x) {
+void insere_BB(BB *b, int x) {
 	b->tam_atual++;
 	b->v[b->tam_atual] = x;
 }
 
-void shift_vet(Vet* b,int pos) {
+void shift_vet(BB *b,int pos) {
 
 
 	for (int i = pos; i < b->tam_atual; ++i) {
@@ -37,7 +37,7 @@ void shift_vet(Vet* b,int pos) {
 	b->tam_atual--;
 }
 
-int intern_search(Vet *b, int x) {
+int intern_search(BB *b, int x) {
 
 	for (int i = 0; i < tam; ++i) {
 		if (b->v[i] == x) return i;
@@ -47,12 +47,20 @@ int intern_search(Vet *b, int x) {
 
 }
 
-void retira_BB(Vet* b, int x) {
+void retira_BB(BB *b, int x) {
 
 	int pos = intern_search(b,x);
 	if (pos != -1) {
 		shift_vet(b,pos);
 	}
+}
+
+int estavazia_BB(BB *b) {
+	return (b->tam_atual == 0);
+}
+
+void destroi_BB(BB *b) {
+	b->tam_atual = 0;
 }
 
 

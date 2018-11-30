@@ -8,8 +8,8 @@ typedef struct {
 } ListaOrd;
 
 void cria_LO(ListaOrd *l);
+void destroi_LO(ListaOrd *l);
+int estavazia_LO(ListaOrd l);
 int insere_LO(ListaOrd *l, int x);
 int remove_LO(ListaOrd *l, int x);
 int busca_LO(ListaOrd l, int x);
-//void imprime(ListaOrd l);
-int esta_vazia(ListaOrd l);
