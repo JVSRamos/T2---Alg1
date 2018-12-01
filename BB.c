@@ -4,7 +4,7 @@ void cria_BB(BB *b) {
 	b->tam_atual = -1;
 }
 
-int busca_binaria(BB *b, int chave, int ini, int fim) {
+int busca_BB(BB *b, int chave, int ini, int fim) {
 
 	
 	if (ini > fim) return -1;
@@ -15,10 +15,10 @@ int busca_binaria(BB *b, int chave, int ini, int fim) {
 		return centro;
 
 	if (chave < b->v[centro])
-		return busca_binaria(b, chave, ini, centro-1);
+		return busca_BB(b, chave, ini, centro-1);
 
 	if (chave > b->v[centro])
-		return busca_binaria(b, chave, centro+1, fim);
+		return busca_BB(b, chave, centro+1, fim);
 	
 }
 
@@ -47,7 +47,7 @@ int intern_search(BB *b, int x) {
 
 }
 
-void retira_BB(BB *b, int x) {
+void remove_BB(BB *b, int x) {
 
 	int pos = intern_search(b,x);
 	if (pos != -1) {

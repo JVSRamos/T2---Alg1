@@ -4,7 +4,7 @@ all :
 run :
 	./main
 	
-test :
+teste :
 	./main > saida.txt
 	gcc -o testaFormato testaFormato.c
 	./testaFormato saida.txt
