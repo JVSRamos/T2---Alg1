@@ -186,3 +186,99 @@ int insere_AVL(AVL *a, elem x) {
     int cresceu;
     return insercaoSub(&(a->raiz), x, &cresceu); // inicia recursao
 }
+
+
+
+int remove_AVL(AVL *a, elem x) {
+	int encolheu;
+	return remocaoSub(&(a->raiz), x, &encolheu);
+}
+
+int remocaoSub(No_AVL **p, elem x, int *encolheu) {
+	
+	int num_filhos = 0;
+	int retorno;
+	No_AVL *aux, *paiAux;
+	
+	if (*p == NULL) return 1;
+	if ((*p)->info == x) {
+		*encolheu = 1;
+		if ((*p)->esq != NULL) num_filhos++; 
+		if ((*p)->dir != NULL) num_filhos++;
+		
+		switch (num_filhos) {
+			case 0 :
+				free(*p); // apaga
+                *p = NULL; // atualiza encadeamento
+                return 0;
+			case 1 :
+				aux = *p;
+                *p = ((*p)->esq != NULL) ? (*p)->esq : (*p)->dir; // atualiza encadeamento
+                free(aux);
+                return 0;
+			case 2 :
+				aux = (*p)->esq;
+                paiAux = *p;
+                while (aux->dir != NULL) {
+                    paiAux = aux;
+                    aux = aux->dir;
+                }
+                (*p)->info = aux->info; // copia info
+                return (paiAux->esq == aux) ? remocaoSub(&(paiAux->esq),aux->info,encolheu) : remocaoSub(&(paiAux->dir),aux->info,encolheu);		
+		}
+		
+	}
+	
+	retorno = (x > (*p)->info) ? remocaoSub((&(*p)->dir),x,encolheu) : remocaoSub((&(*p)->esq),x,encolheu); 
+	
+	if (!retorno && encolheu) {
+		(*p)->fb += (x < (*p)->info) ? -1 : 1; // atualiza fator de balanceamento
+        if ((*p)->fb == 0 || (*p)->fb == 2 || (*p)->fb == -2) {
+            *encolheu = 0; // arvore parou de crescer: 0 => melhorou o balanceamento; 2 ou -2 => sera feito o rebalanceamento
+            switch ((*p)->fb) {
+                case 2: // arvore muito alta a direita
+                    if ((*p)->dir->fb == 1) { // mesmo sinal
+                        E(p); // rotacao simples a esquerda
+                        // atualiza fatores de balanceamento
+                        (*p)->fb = 0;
+                        (*p)->esq->fb = 0;
+                    } else { // sinais opostos
+                        DE(p); // rotacao dupla direita-esquerda
+                        atualizaFB(*p); // atualiza fatores de balanceamento
+                    }
+                    break;
+                case -2: // arvore muito alta a esquerda
+                    if ((*p)->esq->fb == -1) { // mesmo sinal
+                        D(p); // rotacao simples a direita
+                        // atualiza fatores de balanceamento
+                        (*p)->fb = 0;
+                        (*p)->dir->fb = 0;
+                    } else { // sinais opostos
+                        ED(p); // rotacao dupla esquerda-direita
+                        atualizaFB(*p); // atualiza fatores de balanceamento
+                    }
+                    break;
+            }
+        }
+	}
+	
+	
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

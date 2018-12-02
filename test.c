@@ -1,26 +1,24 @@
 #include <stdio.h>
 
-#include "LFREQ.h"
+#include "AVL.h"
 
 int main() {
 	
-	LFREQ l;
-	cria_LFREQ(&l);
-
-	insere_LFREQ(&l,2);
-	insere_LFREQ(&l,4);
-	insere_LFREQ(&l,6);
-	insere_LFREQ(&l,8);
-	insere_LFREQ(&l,9);
-
-	imprime(l);
-
-	busca_LFREQ(&l, 4);
-	imprime(l);
-	busca_LFREQ(&l, 9);
-	imprime(l);
-
-	apaga_LFREQ(&l);
+	AVL a;
+	
+	cria_AVL(&a);
+	
+	insere_AVL(&a,6);
+	insere_AVL(&a,4);
+	insere_AVL(&a,7);
+	insere_AVL(&a,2);
+	insere_AVL(&a,5);
+	insere_AVL(&a,3);
+	insere_AVL(&a,8);
+	
+	remove_AVL(&a,8);
+		
+	destroi_AVL(&a);
 
 
 }
