@@ -1,5 +1,5 @@
 all :
-	gcc -o main BB.c LO.c LOS.c ABB.c AVL.c main.c -std=c99
+	gcc -o main BB.c LO.c LOS.c ABB.c AVL.c LFREQ.c main.c -std=c99
 
 run :
 	./main

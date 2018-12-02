@@ -73,10 +73,10 @@ int main(void) {
 					n_ale = rand();
 					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 						n_ale = n_ale % n[ni];
-						busca_BB(&estr1, n_ale);
+						busca_BB(&estr1, n_ale, 0, n[ni]);
 					} else {	//para a outra metade, faco por inexistentes
 						n_ale += n[ni];
-						busca_BB(&estr1, n_ale);
+						busca_BB(&estr1, n_ale, 0, n[ni]);
 					}
 				}
 				tempo = clock() - tempo;
@@ -101,10 +101,10 @@ int main(void) {
 			destroi_BB(&estr1);
 			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
 		}
-		tabela[0][0][ni] \= 10.0;
-		tabela[6][0][ni] \= 10.0;
-		tabela[3][0][ni] \= 10.0;
-		tabela[4][0][ni] \= 10.0;
+		tabela[0][0][ni] /= 10.0;
+		tabela[6][0][ni] /= 10.0;
+		tabela[3][0][ni] /= 10.0;
+		tabela[4][0][ni] /= 10.0;
 		
 		
 		//agora, faco o mesmo procedimento do for anterior, so que para a LO
@@ -124,10 +124,10 @@ int main(void) {
 					n_ale = rand();
 					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 						n_ale = n_ale % n[ni];
-						busca_LO(&estr2, n_ale);
+						busca_LO(estr2, n_ale);
 					} else {	//para a outra metade, faco por inexistentes
 						n_ale += n[ni];
-						busca_LO(&estr2, n_ale);
+						busca_LO(estr2, n_ale);
 					}
 				}
 				tempo = clock() - tempo;
@@ -152,10 +152,10 @@ int main(void) {
 			destroi_LO(&estr2);
 			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
 		}
-		tabela[0][1][ni] \= 10.0;
-		tabela[6][1][ni] \= 10.0;
-		tabela[3][1][ni] \= 10.0;
-		tabela[4][1][ni] \= 10.0;
+		tabela[0][1][ni] /= 10.0;
+		tabela[6][1][ni] /= 10.0;
+		tabela[3][1][ni] /= 10.0;
+		tabela[4][1][ni] /= 10.0;
 		
 		//para a LOS
 		
@@ -174,10 +174,10 @@ int main(void) {
 					n_ale = rand();
 					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 						n_ale = n_ale % n[ni];
-						busca_LOS(&estr3, n_ale);
+						busca_LOS(estr3, n_ale);
 					} else {	//para a outra metade, faco por inexistentes
 						n_ale += n[ni];
-						busca_LOS(&estr3, n_ale);
+						busca_LOS(estr3, n_ale);
 					}
 				}
 				tempo = clock() - tempo;
@@ -202,10 +202,10 @@ int main(void) {
 			destroi_LOS(&estr3);
 			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
 		}
-		tabela[0][2][ni] \= 10.0;
-		tabela[6][2][ni] \= 10.0;
-		tabela[3][2][ni] \= 10.0;
-		tabela[4][2][ni] \= 10.0;
+		tabela[0][2][ni] /= 10.0;
+		tabela[6][2][ni] /= 10.0;
+		tabela[3][2][ni] /= 10.0;
+		tabela[4][2][ni] /= 10.0;
 		
 		//ABB
 		
@@ -224,10 +224,10 @@ int main(void) {
 					n_ale = rand();
 					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 						n_ale = n_ale % n[ni];
-						busca_ABB(&estr4, n_ale);
+						busca_ABB(estr4, n_ale);
 					} else {	//para a outra metade, faco por inexistentes
 						n_ale += n[ni];
-						busca_ABB(&estr4, n_ale);
+						busca_ABB(estr4, n_ale);
 					}
 				}
 				tempo = clock() - tempo;
@@ -252,10 +252,10 @@ int main(void) {
 			destroi_ABB(&estr4);
 			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
 		}
-		tabela[0][3][ni] \= 10.0;
-		tabela[6][3][ni] \= 10.0;
-		tabela[3][3][ni] \= 10.0;
-		tabela[4][3][ni] \= 10.0;
+		tabela[0][3][ni] /= 10.0;
+		tabela[6][3][ni] /= 10.0;
+		tabela[3][3][ni] /= 10.0;
+		tabela[4][3][ni] /= 10.0;
 		
 		//AVL
 		
@@ -274,10 +274,10 @@ int main(void) {
 					n_ale = rand();
 					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 						n_ale = n_ale % n[ni];
-						busca_AVL(&estr5, n_ale);
+						busca_AVL(estr5, n_ale);
 					} else {	//para a outra metade, faco por inexistentes
 						n_ale += n[ni];
-						busca_AVL(&estr5, n_ale);
+						busca_AVL(estr5, n_ale);
 					}
 				}
 				tempo = clock() - tempo;
@@ -302,10 +302,10 @@ int main(void) {
 			destroi_AVL(&estr5);
 			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
 		}
-		tabela[0][4][ni] \= 10.0;
-		tabela[6][4][ni] \= 10.0;
-		tabela[3][4][ni] \= 10.0;
-		tabela[4][4][ni] \= 10.0;
+		tabela[0][4][ni] /= 10.0;
+		tabela[6][4][ni] /= 10.0;
+		tabela[3][4][ni] /= 10.0;
+		tabela[4][4][ni] /= 10.0;
 		
 		//e LFREQ
 		
@@ -352,10 +352,10 @@ int main(void) {
 			destroi_LFREQ(&estr6);
 			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
 		}
-		tabela[0][5][ni] \= 10.0;
-		tabela[6][5][ni] \= 10.0;
-		tabela[3][5][ni] \= 10.0;
-		tabela[4][5][ni] \= 10.0;
+		tabela[0][5][ni] /= 10.0;
+		tabela[6][5][ni] /= 10.0;
+		tabela[3][5][ni] /= 10.0;
+		tabela[4][5][ni] /= 10.0;
 
 		
 		//agora, faco a insercao decrescente e os testes apropriados, comecando pela BB
@@ -373,10 +373,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_BB(&estr1, n_ale);
+					busca_BB(&estr1, n_ale, 0, n[ni]);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_BB(&estr1, n_ale);
+					busca_BB(&estr1, n_ale, 0, n[ni]);
 				}
 			}
 			tempo = clock() - tempo;
@@ -385,8 +385,8 @@ int main(void) {
 			destroi_BB(&estr1);
 			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
 		}
-		tabela[1][0][ni] \= 10.0;
-		tabela[7][0][ni] \= 10.0;
+		tabela[1][0][ni] /= 10.0;
+		tabela[7][0][ni] /= 10.0;
 		
 		//LO
 		
@@ -403,10 +403,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_LO(&estr2, n_ale);
+					busca_LO(estr2, n_ale);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_LO(&estr2, n_ale);
+					busca_LO(estr2, n_ale);
 				}
 			}
 			tempo = clock() - tempo;
@@ -415,8 +415,8 @@ int main(void) {
 			destroi_LO(&estr2);
 			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
 		}
-		tabela[1][1][ni] \= 10.0;
-		tabela[7][1][ni] \= 10.0;
+		tabela[1][1][ni] /= 10.0;
+		tabela[7][1][ni] /= 10.0;
 			
 		//LOS
 		
@@ -433,10 +433,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_LOS(&estr3, n_ale);
+					busca_LOS(estr3, n_ale);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_LOS(&estr3, n_ale);
+					busca_LOS(estr3, n_ale);
 				}
 			}
 			tempo = clock() - tempo;
@@ -445,8 +445,8 @@ int main(void) {
 			destroi_LOS(&estr3);
 			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
 		}
-		tabela[1][2][ni] \= 10.0;
-		tabela[7][2][ni] \= 10.0;
+		tabela[1][2][ni] /= 10.0;
+		tabela[7][2][ni] /= 10.0;
 			
 		//ABB
 		
@@ -463,10 +463,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_ABB(&estr4, n_ale);
+					busca_ABB(estr4, n_ale);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_ABB(&estr4, n_ale);
+					busca_ABB(estr4, n_ale);
 				}
 			}
 			tempo = clock() - tempo;
@@ -475,8 +475,8 @@ int main(void) {
 			destroi_ABB(&estr4);
 			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
 		}
-		tabela[1][3][ni] \= 10.0;
-		tabela[7][3][ni] \= 10.0;
+		tabela[1][3][ni] /= 10.0;
+		tabela[7][3][ni] /= 10.0;
 			
 		//AVL
 		
@@ -493,10 +493,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_AVL(&estr5, n_ale);
+					busca_AVL(estr5, n_ale);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_AVL(&estr5, n_ale);
+					busca_AVL(estr5, n_ale);
 				}
 			}
 			tempo = clock() - tempo;
@@ -505,8 +505,8 @@ int main(void) {
 			destroi_AVL(&estr5);
 			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
 		}
-		tabela[1][4][ni] \= 10.0;
-		tabela[7][4][ni] \= 10.0;
+		tabela[1][4][ni] /= 10.0;
+		tabela[7][4][ni] /= 10.0;
 
 		//e LFREQ
 		
@@ -535,8 +535,8 @@ int main(void) {
 			destroi_LFREQ(&estr6);
 			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
 		}
-		tabela[1][5][ni] \= 10.0;
-		tabela[7][5][ni] \= 10.0;
+		tabela[1][5][ni] /= 10.0;
+		tabela[7][5][ni] /= 10.0;
 		
 		
 		//agora, so falta a insercao e remocao aleatorias
@@ -569,10 +569,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_BB(&estr1, n_ale);
+					busca_BB(&estr1, n_ale, 0, n[ni]);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_BB(&estr1, n_ale);
+					busca_BB(&estr1, n_ale, 0, n[ni]);
 				}
 			}
 			tempo = clock() - tempo;
@@ -604,9 +604,9 @@ int main(void) {
 			destroi_BB(&estr1);
 			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
 		}
-		tabela[2][0][ni] \= 10.0;
-		tabela[8][0][ni] \= 10.0;
-		tabela[5][0][ni] \= 10.0;
+		tabela[2][0][ni] /= 10.0;
+		tabela[8][0][ni] /= 10.0;
+		tabela[5][0][ni] /= 10.0;
 		
 		//agora para a LO
 		
@@ -636,10 +636,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_LO(&estr2, n_ale);
+					busca_LO(estr2, n_ale);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_LO(&estr2, n_ale);
+					busca_LO(estr2, n_ale);
 				}
 			}
 			tempo = clock() - tempo;
@@ -671,9 +671,9 @@ int main(void) {
 			destroi_LO(&estr2);
 			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
 		}
-		tabela[2][1][ni] \= 10.0;
-		tabela[8][1][ni] \= 10.0;
-		tabela[5][1][ni] \= 10.0;
+		tabela[2][1][ni] /= 10.0;
+		tabela[8][1][ni] /= 10.0;
+		tabela[5][1][ni] /= 10.0;
 		
 		//para a LOS
 		
@@ -703,10 +703,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_LOS(&estr3, n_ale);
+					busca_LOS(estr3, n_ale);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_LOS(&estr3, n_ale);
+					busca_LOS(estr3, n_ale);
 				}
 			}
 			tempo = clock() - tempo;
@@ -738,9 +738,9 @@ int main(void) {
 			destroi_LOS(&estr3);
 			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
 		}
-		tabela[2][2][ni] \= 10.0;
-		tabela[8][2][ni] \= 10.0;
-		tabela[5][2][ni] \= 10.0;
+		tabela[2][2][ni] /= 10.0;
+		tabela[8][2][ni] /= 10.0;
+		tabela[5][2][ni] /= 10.0;
 		
 		//ABB
 		
@@ -770,10 +770,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_ABB(&estr4, n_ale);
+					busca_ABB(estr4, n_ale);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_ABB(&estr4, n_ale);
+					busca_ABB(estr4, n_ale);
 				}
 			}
 			tempo = clock() - tempo;
@@ -805,9 +805,9 @@ int main(void) {
 			destroi_ABB(&estr4);
 			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
 		}
-		tabela[2][3][ni] \= 10.0;
-		tabela[8][3][ni] \= 10.0;
-		tabela[5][3][ni] \= 10.0;
+		tabela[2][3][ni] /= 10.0;
+		tabela[8][3][ni] /= 10.0;
+		tabela[5][3][ni] /= 10.0;
 		
 				//para a LOS
 		
@@ -837,10 +837,10 @@ int main(void) {
 				n_ale = rand();
 				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
 					n_ale = n_ale % n[ni];
-					busca_AVL(&estr5, n_ale);
+					busca_AVL(estr5, n_ale);
 				} else {	//para a outra metade, faco por inexistentes
 					n_ale += n[ni];
-					busca_AVL(&estr5, n_ale);
+					busca_AVL(estr5, n_ale);
 				}
 			}
 			tempo = clock() - tempo;
@@ -872,9 +872,9 @@ int main(void) {
 			destroi_AVL(&estr5);
 			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
 		}
-		tabela[2][4][ni] \= 10.0;
-		tabela[8][4][ni] \= 10.0;
-		tabela[5][4][ni] \= 10.0;
+		tabela[2][4][ni] /= 10.0;
+		tabela[8][4][ni] /= 10.0;
+		tabela[5][4][ni] /= 10.0;
 		
 		//e, por ultimo, para a LFREQ
 		
@@ -939,9 +939,9 @@ int main(void) {
 			destroi_LFREQ(&estr6);
 			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
 		}
-		tabela[2][5][ni] \= 10.0;
-		tabela[8][5][ni] \= 10.0;
-		tabela[5][5][ni] \= 10.0;
+		tabela[2][5][ni] /= 10.0;
+		tabela[8][5][ni] /= 10.0;
+		tabela[5][5][ni] /= 10.0;
 	}
 	
 	

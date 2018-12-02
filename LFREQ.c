@@ -107,16 +107,3 @@ void remove_LFREQ(LFREQ *l, int x) {
 
 
 
-void imprime(LFREQ l) {
-
-    No_LFREQ *p = l.ini;
-
-    do { 
-        printf("%d\n", p->info);
-        p = p->prox;
-    }   while (p != l.ini);
-    return;
-}
-
-
-
