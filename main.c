@@ -6,14 +6,14 @@
 #include "LOS.h"
 #include "ABB.h"
 #include "AVL.h"
-//#include "LFREQ.h"
+#include "LFREQ.h"
 
 /*
 	TODO:
 		AVL remocao
-		LFREQ
 		BB - falta sort
-	
+		Verificar se vai dar bosta no vetor "usado" na segunda rodagem do for
+		Fazer a funcao de remocao aleatoria (e garantir a proporcao n/2:n/2)
 */
 
 int main(void) {
@@ -25,10 +25,13 @@ int main(void) {
 	ListaOrds estr3;	//estrutura 3
 	ABB estr4;	//estrutura 4
 	AVL estr5;	//estrutura 5
-	//LFREQ estr6;	//estrutura 6
+	LFREQ estr6;	//estrutura 6
 	int n[4];	//guarda os numeros que vao ser utilizados para os testes
 	clock_t tempo;
 	int n_ale;
+	int count;	//utilizado para as insercoes aleatorias
+	int *usado = calloc(100000, sizeof(int));	//vetor para auxiliar nas insercoes aleatorias
+	int *numero = malloc(100000*sizeof(int));	//vai ser utilizado para nao modificar o resultado de tempo nas insercoes aleatorias
 	double tabela[9][6][4];	//9 tabelas, cada uma com 6 linhas e 4 colunas
 	
 	cria_BB(&estr1);
@@ -36,7 +39,7 @@ int main(void) {
 	cria_LOS(&estr3);
 	cria_ABB(&estr4);
 	cria_AVL(&estr5);
-	//cria_LFREQ(&estr6);
+	cria_LFREQ(&estr6);
 	n[0] = 100;
 	n[1] = 1000;
 	n[2] = 10000;
@@ -536,13 +539,57 @@ int main(void) {
 		tabela[7][5][ni] \= 10.0;
 		
 		
-		//agora, so falta a insercao aleatoria
+		//agora, so falta a insercao e remocao aleatorias
 		
+		//vamos comecar, de praxe, pela BB
 		
-		
-		
-		
-		
+		for (int j = 0; j < 10; j++){
+			count = 0;
+			
+			//primeiro, preparo os numeros aleatorios (isto eh feito para que o tempo da insercao aleatoria nao fique "encontrar os numeros aleatorios" + "inserir os numeros aleatorios", mas sim apenas "inserir os numeros aleatorios")
+			do {
+				n_ale = rand() % n[ni];
+				if (usado[n_ale] == 1) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 1;
+				count++;
+			} while (count < n[ni]);
+			
+			//agora sim, conto o tempo de insercao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) insere_BB(&estr1, numero[k]);
+			tempo = clock() - tempo;
+			tabela[2][0][ni] += tempo;
+			
+			//busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_BB(&estr1, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_BB(&estr1, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[8][0][ni] += tempo;
+			
+			//remocao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+			}
+			tempo = clock() - tempo;
+			tabela[5][0][ni] += tempo;
+			
+			destroi_BB(&estr1);
+			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
+		}
+		tabela[2][0][ni] \= 10.0;
+		tabela[8][0][ni] \= 10.0;
+		tabela[5][0][ni] \= 10.0;
 		
 	}
 	
@@ -643,7 +690,9 @@ int main(void) {
 	destroi_LOS(&estr3);
 	destroi_ABB(&estr4);
 	destroi_AVL(&estr5);
-	//destroi_LFREQ(&estr6);
+	destroi_LFREQ(&estr6);
+	free(usado);
+	free(numero);
 
 	return 0;
 }
