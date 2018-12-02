@@ -30,7 +30,7 @@ int main(void) {
 	clock_t tempo;
 	int n_ale;
 	int count;	//utilizado para as insercoes aleatorias
-	int *usado = calloc(100000, sizeof(int));	//vetor para auxiliar nas insercoes aleatorias
+	int *usado = malloc(100000*sizeof(int));	//vetor para auxiliar nas insercoes aleatorias
 	int *numero = malloc(100000*sizeof(int));	//vai ser utilizado para nao modificar o resultado de tempo nas insercoes aleatorias
 	double tabela[9][6][4];	//9 tabelas, cada uma com 6 linhas e 4 colunas
 	
@@ -58,7 +58,7 @@ int main(void) {
 		
 		//primeiro, faco a insercao crescente e os testes apropriados para a BB
 		
-		for (int j = 0; j < 20; j++){
+		for (int j = 0; j < 20; j++) {
 			
 			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
 				//primeiro, faco a insercao
@@ -109,7 +109,7 @@ int main(void) {
 		
 		//agora, faco o mesmo procedimento do for anterior, so que para a LO
 		
-		for (int j = 0; j < 20; j++){
+		for (int j = 0; j < 20; j++) {
 			
 			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
 				//primeiro, faco a insercao
@@ -159,7 +159,7 @@ int main(void) {
 		
 		//para a LOS
 		
-		for (int j = 0; j < 20; j++){
+		for (int j = 0; j < 20; j++) {
 			
 			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
 				//primeiro, faco a insercao
@@ -209,7 +209,7 @@ int main(void) {
 		
 		//ABB
 		
-		for (int j = 0; j < 20; j++){
+		for (int j = 0; j < 20; j++) {
 			
 			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
 				//primeiro, faco a insercao
@@ -259,7 +259,7 @@ int main(void) {
 		
 		//AVL
 		
-		for (int j = 0; j < 20; j++){
+		for (int j = 0; j < 20; j++) {
 			
 			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
 				//primeiro, faco a insercao
@@ -309,7 +309,7 @@ int main(void) {
 		
 		//e LFREQ
 		
-		for (int j = 0; j < 20; j++){
+		for (int j = 0; j < 20; j++) {
 			
 			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
 				//primeiro, faco a insercao
@@ -360,7 +360,7 @@ int main(void) {
 		
 		//agora, faco a insercao decrescente e os testes apropriados, comecando pela BB
 		
-		for (int j = 0; j < 10; j++){
+		for (int j = 0; j < 10; j++) {
 			//primeiro, faco a insercao
 			tempo = clock();
 			for (int k = n[ni]-1; k >= 0; k--) insere_BB(&estr1, k);
@@ -390,7 +390,7 @@ int main(void) {
 		
 		//LO
 		
-		for (int j = 0; j < 10; j++){
+		for (int j = 0; j < 10; j++) {
 			//primeiro, faco a insercao
 			tempo = clock();
 			for (int k = n[ni]-1; k >= 0; k--) insere_LO(&estr2, k);
@@ -420,7 +420,7 @@ int main(void) {
 			
 		//LOS
 		
-		for (int j = 0; j < 10; j++){
+		for (int j = 0; j < 10; j++) {
 			//primeiro, faco a insercao
 			tempo = clock();
 			for (int k = n[ni]-1; k >= 0; k--) insere_LOS(&estr3, k);
@@ -450,7 +450,7 @@ int main(void) {
 			
 		//ABB
 		
-		for (int j = 0; j < 10; j++){
+		for (int j = 0; j < 10; j++) {
 			//primeiro, faco a insercao
 			tempo = clock();
 			for (int k = n[ni]-1; k >= 0; k--) insere_ABB(&estr4, k);
@@ -480,7 +480,7 @@ int main(void) {
 			
 		//AVL
 		
-		for (int j = 0; j < 10; j++){
+		for (int j = 0; j < 10; j++) {
 			//primeiro, faco a insercao
 			tempo = clock();
 			for (int k = n[ni]-1; k >= 0; k--) insere_AVL(&estr5, k);
@@ -510,7 +510,7 @@ int main(void) {
 
 		//e LFREQ
 		
-		for (int j = 0; j < 10; j++){
+		for (int j = 0; j < 10; j++) {
 			//primeiro, faco a insercao
 			tempo = clock();
 			for (int k = n[ni]-1; k >= 0; k--) insere_LFREQ(&estr6, k);
@@ -543,13 +543,15 @@ int main(void) {
 		
 		//vamos comecar, de praxe, pela BB
 		
-		for (int j = 0; j < 10; j++){
+		for (int j = 0; j < 10; j++) {
 			count = 0;
+			
+			for (int k = 0; k < n[ni]; k++) usado[k] = 0;	// "reseto" o vetor de usados
 			
 			//primeiro, preparo os numeros aleatorios (isto eh feito para que o tempo da insercao aleatoria nao fique "encontrar os numeros aleatorios" + "inserir os numeros aleatorios", mas sim apenas "inserir os numeros aleatorios")
 			do {
 				n_ale = rand() % n[ni];
-				if (usado[n_ale] == 1) continue;
+				if (usado[n_ale]) continue;
 				numero[count] = n_ale;
 				usado[n_ale] = 1;
 				count++;
@@ -576,10 +578,25 @@ int main(void) {
 			tempo = clock() - tempo;
 			tabela[8][0][ni] += tempo;
 			
-			//remocao
+			//primeiro, preparo os numeros aleatorios (pelo mesmo motivo da insercao)
+			count = 0;
+			do {
+				n_ale = rand() % n[ni];
+				if (!usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 0;
+				count++;
+			} while (count < n[ni]/2);
+			
+			//agora, a remocao
 			tempo = clock();
 			for (int k = 0; k < n[ni]; k++) {
-				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco remocao de numeros existentes
+					remove_BB(&estr1, numero[k]);
+				} else {	//para a outra metade, tento fazer a remocao de inexistentes
+					n_ale = rand() + n[ni];
+					remove_BB(&estr1, n_ale);
+				}
 			}
 			tempo = clock() - tempo;
 			tabela[5][0][ni] += tempo;
@@ -591,8 +608,340 @@ int main(void) {
 		tabela[8][0][ni] \= 10.0;
 		tabela[5][0][ni] \= 10.0;
 		
-				//falta fazer a remocao e replica esse for de cima para todas as outras estruturas
+		//agora para a LO
 		
+		for (int j = 0; j < 10; j++) {
+			count = 0;
+			
+			for (int k = 0; k < n[ni]; k++) usado[k] = 0;	// "reseto" o vetor de usados
+			
+			//primeiro, preparo os numeros aleatorios (isto eh feito para que o tempo da insercao aleatoria nao fique "encontrar os numeros aleatorios" + "inserir os numeros aleatorios", mas sim apenas "inserir os numeros aleatorios")
+			do {
+				n_ale = rand() % n[ni];
+				if (usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 1;
+				count++;
+			} while (count < n[ni]);
+			
+			//agora sim, conto o tempo de insercao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) insere_LO(&estr2, numero[k]);
+			tempo = clock() - tempo;
+			tabela[2][1][ni] += tempo;
+			
+			//busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_LO(&estr2, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_LO(&estr2, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[8][1][ni] += tempo;
+			
+			//primeiro, preparo os numeros aleatorios (pelo mesmo motivo da insercao)
+			count = 0;
+			do {
+				n_ale = rand() % n[ni];
+				if (!usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 0;
+				count++;
+			} while (count < n[ni]/2);
+			
+			//agora, a remocao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				if (k < n[ni]/2) {	//para a primeira metade, faco remocao de numeros existentes
+					remove_LO(&estr2, numero[k]);
+				} else {	//para a outra metade, tento fazer a remocao de inexistentes
+					n_ale = rand() + n[ni];
+					remove_LO(&estr2, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[5][1][ni] += tempo;
+			
+			destroi_LO(&estr2);
+			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
+		}
+		tabela[2][1][ni] \= 10.0;
+		tabela[8][1][ni] \= 10.0;
+		tabela[5][1][ni] \= 10.0;
+		
+		//para a LOS
+		
+		for (int j = 0; j < 10; j++) {
+			count = 0;
+			
+			for (int k = 0; k < n[ni]; k++) usado[k] = 0;	// "reseto" o vetor de usados
+			
+			//primeiro, preparo os numeros aleatorios (isto eh feito para que o tempo da insercao aleatoria nao fique "encontrar os numeros aleatorios" + "inserir os numeros aleatorios", mas sim apenas "inserir os numeros aleatorios")
+			do {
+				n_ale = rand() % n[ni];
+				if (usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 1;
+				count++;
+			} while (count < n[ni]);
+			
+			//agora sim, conto o tempo de insercao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) insere_LOS(&estr3, numero[k]);
+			tempo = clock() - tempo;
+			tabela[2][2][ni] += tempo;
+			
+			//busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_LOS(&estr3, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_LOS(&estr3, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[8][2][ni] += tempo;
+			
+			//primeiro, preparo os numeros aleatorios (pelo mesmo motivo da insercao)
+			count = 0;
+			do {
+				n_ale = rand() % n[ni];
+				if (!usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 0;
+				count++;
+			} while (count < n[ni]/2);
+			
+			//agora, a remocao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				if (k < n[ni]/2) {	//para a primeira metade, faco remocao de numeros existentes
+					remove_LOS(&estr3, numero[k]);
+				} else {	//para a outra metade, tento fazer a remocao de inexistentes
+					n_ale = rand() + n[ni];
+					remove_LOS(&estr3, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[5][2][ni] += tempo;
+			
+			destroi_LOS(&estr3);
+			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
+		}
+		tabela[2][2][ni] \= 10.0;
+		tabela[8][2][ni] \= 10.0;
+		tabela[5][2][ni] \= 10.0;
+		
+		//ABB
+		
+		for (int j = 0; j < 10; j++) {
+			count = 0;
+			
+			for (int k = 0; k < n[ni]; k++) usado[k] = 0;	// "reseto" o vetor de usados
+			
+			//primeiro, preparo os numeros aleatorios (isto eh feito para que o tempo da insercao aleatoria nao fique "encontrar os numeros aleatorios" + "inserir os numeros aleatorios", mas sim apenas "inserir os numeros aleatorios")
+			do {
+				n_ale = rand() % n[ni];
+				if (usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 1;
+				count++;
+			} while (count < n[ni]);
+			
+			//agora sim, conto o tempo de insercao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) insere_ABB(&estr4, numero[k]);
+			tempo = clock() - tempo;
+			tabela[2][3][ni] += tempo;
+			
+			//busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_ABB(&estr4, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_ABB(&estr4, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[8][3][ni] += tempo;
+			
+			//primeiro, preparo os numeros aleatorios (pelo mesmo motivo da insercao)
+			count = 0;
+			do {
+				n_ale = rand() % n[ni];
+				if (!usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 0;
+				count++;
+			} while (count < n[ni]/2);
+			
+			//agora, a remocao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				if (k < n[ni]/2) {	//para a primeira metade, faco remocao de numeros existentes
+					remove_ABB(&estr4, numero[k]);
+				} else {	//para a outra metade, tento fazer a remocao de inexistentes
+					n_ale = rand() + n[ni];
+					remove_ABB(&estr4, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[5][3][ni] += tempo;
+			
+			destroi_ABB(&estr4);
+			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
+		}
+		tabela[2][3][ni] \= 10.0;
+		tabela[8][3][ni] \= 10.0;
+		tabela[5][3][ni] \= 10.0;
+		
+				//para a LOS
+		
+		for (int j = 0; j < 10; j++) {
+			count = 0;
+			
+			for (int k = 0; k < n[ni]; k++) usado[k] = 0;	// "reseto" o vetor de usados
+			
+			//primeiro, preparo os numeros aleatorios (isto eh feito para que o tempo da insercao aleatoria nao fique "encontrar os numeros aleatorios" + "inserir os numeros aleatorios", mas sim apenas "inserir os numeros aleatorios")
+			do {
+				n_ale = rand() % n[ni];
+				if (usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 1;
+				count++;
+			} while (count < n[ni]);
+			
+			//agora sim, conto o tempo de insercao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) insere_AVL(&estr5, numero[k]);
+			tempo = clock() - tempo;
+			tabela[2][4][ni] += tempo;
+			
+			//busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_AVL(&estr5, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_AVL(&estr5, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[8][4][ni] += tempo;
+			
+			//primeiro, preparo os numeros aleatorios (pelo mesmo motivo da insercao)
+			count = 0;
+			do {
+				n_ale = rand() % n[ni];
+				if (!usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 0;
+				count++;
+			} while (count < n[ni]/2);
+			
+			//agora, a remocao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				if (k < n[ni]/2) {	//para a primeira metade, faco remocao de numeros existentes
+					remove_AVL(&estr5, numero[k]);
+				} else {	//para a outra metade, tento fazer a remocao de inexistentes
+					n_ale = rand() + n[ni];
+					remove_AVL(&estr5, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[5][4][ni] += tempo;
+			
+			destroi_AVL(&estr5);
+			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
+		}
+		tabela[2][4][ni] \= 10.0;
+		tabela[8][4][ni] \= 10.0;
+		tabela[5][4][ni] \= 10.0;
+		
+		//e, por ultimo, para a LFREQ
+		
+		for (int j = 0; j < 10; j++) {
+			count = 0;
+			
+			for (int k = 0; k < n[ni]; k++) usado[k] = 0;	// "reseto" o vetor de usados
+			
+			//primeiro, preparo os numeros aleatorios (isto eh feito para que o tempo da insercao aleatoria nao fique "encontrar os numeros aleatorios" + "inserir os numeros aleatorios", mas sim apenas "inserir os numeros aleatorios")
+			do {
+				n_ale = rand() % n[ni];
+				if (usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 1;
+				count++;
+			} while (count < n[ni]);
+			
+			//agora sim, conto o tempo de insercao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) insere_LFREQ(&estr6, numero[k]);
+			tempo = clock() - tempo;
+			tabela[2][5][ni] += tempo;
+			
+			//busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_LFREQ(&estr6, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_LFREQ(&estr6, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[8][5][ni] += tempo;
+			
+			//primeiro, preparo os numeros aleatorios (pelo mesmo motivo da insercao)
+			count = 0;
+			do {
+				n_ale = rand() % n[ni];
+				if (!usado[n_ale]) continue;
+				numero[count] = n_ale;
+				usado[n_ale] = 0;
+				count++;
+			} while (count < n[ni]/2);
+			
+			//agora, a remocao
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				if (k < n[ni]/2) {	//para a primeira metade, faco remocao de numeros existentes
+					remove_LFREQ(&estr6, numero[k]);
+				} else {	//para a outra metade, tento fazer a remocao de inexistentes
+					n_ale = rand() + n[ni];
+					remove_LFREQ(&estr6, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[5][5][ni] += tempo;
+			
+			destroi_LFREQ(&estr6);
+			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
+		}
+		tabela[2][5][ni] \= 10.0;
+		tabela[8][5][ni] \= 10.0;
+		tabela[5][5][ni] \= 10.0;
 	}
 	
 	
