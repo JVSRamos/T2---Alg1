@@ -43,15 +43,336 @@ int main(void) {
 	n[2] = 10000;
 	n[3] = 100000;
 	
+	for (int i = 0; i < 9; i++) {	//inicializa a tabela com 0s
+		for (int j = 0; j < 6; j++) {
+			for (int k = 0; k < 4; k++) {
+				tabela[i][j][k] = 0.0;
+			}
+		}
+	}
+	
 	for (int ni = 0; ni < 4; ni++) {
 		//a partir daqui, ja tenho um valor de n fixado
 		
 		//primeiro, faco a insercao crescente e os testes apropriados para a BB
 		
 		for (int j = 0; j < 20; j++){
-			media = 0.0;
 			
 			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
+				//primeiro, faco a insercao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) insere_BB(&estr1, k);
+				tempo = clock() - tempo;
+				tabela[0][0][ni] += (double)tempo;
+				
+				//depois, a busca
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) {
+					n_ale = rand();
+					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+						n_ale = n_ale % n[ni];
+						busca_BB(&estr1, n_ale);
+					} else {	//para a outra metade, faco por inexistentes
+						n_ale += n[ni];
+						busca_BB(&estr1, n_ale);
+					}
+				}
+				tempo = clock() - tempo;
+				tabela[6][0][ni] += (double)tempo;
+				
+				//por ultimo, a remocao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) remove_BB(&estr1, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
+				tempo = clock() - tempo;
+				tabela[3][0][ni] += (double)tempo;
+				
+			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
+				//insercao
+				for (int k = 0; k < n[ni]; k++) insere_BB(&estr1, k);
+				//remocao (decrescente)
+				tempo = clock();
+				for (int k = n[ni]-1; k >= 0; k--) remove_BB(&estr1, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
+				tempo = clock() - tempo;
+				tabela[4][0][ni] += (double)tempo;
+			}
+			
+			destroi_BB(&estr1);
+			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
+		}
+		tabela[0][0][ni] \= 10.0;
+		tabela[6][0][ni] \= 10.0;
+		tabela[3][0][ni] \= 10.0;
+		tabela[4][0][ni] \= 10.0;
+		
+		
+		//agora, faco o mesmo procedimento do for anterior, so que para a LO
+		
+		for (int j = 0; j < 20; j++){
+			
+			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
+				//primeiro, faco a insercao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) insere_LO(&estr2, k);
+				tempo = clock() - tempo;
+				tabela[0][1][ni] += (double)tempo;
+				
+				//depois, a busca
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) {
+					n_ale = rand();
+					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+						n_ale = n_ale % n[ni];
+						busca_LO(&estr2, n_ale);
+					} else {	//para a outra metade, faco por inexistentes
+						n_ale += n[ni];
+						busca_LO(&estr2, n_ale);
+					}
+				}
+				tempo = clock() - tempo;
+				tabela[6][1][ni] += (double)tempo;
+				
+				//por ultimo, a remocao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) remove_LO(&estr2, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
+				tempo = clock() - tempo;
+				tabela[3][1][ni] += (double)tempo;
+				
+			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
+				//insercao
+				for (int k = 0; k < n[ni]; k++) insere_LO(&estr2, k);
+				//remocao (decrescente)
+				tempo = clock();
+				for (int k = n[ni]-1; k >= 0; k--) remove_LO(&estr2, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
+				tempo = clock() - tempo;
+				tabela[4][1][ni] += (double)tempo;
+			}
+			
+			destroi_LO(&estr2);
+			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
+		}
+		tabela[0][1][ni] \= 10.0;
+		tabela[6][1][ni] \= 10.0;
+		tabela[3][1][ni] \= 10.0;
+		tabela[4][1][ni] \= 10.0;
+		
+		//para a LOS
+		
+		for (int j = 0; j < 20; j++){
+			
+			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
+				//primeiro, faco a insercao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) insere_LOS(&estr3, k);
+				tempo = clock() - tempo;
+				tabela[0][2][ni] += (double)tempo;
+				
+				//depois, a busca
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) {
+					n_ale = rand();
+					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+						n_ale = n_ale % n[ni];
+						busca_LOS(&estr3, n_ale);
+					} else {	//para a outra metade, faco por inexistentes
+						n_ale += n[ni];
+						busca_LOS(&estr3, n_ale);
+					}
+				}
+				tempo = clock() - tempo;
+				tabela[6][2][ni] += (double)tempo;
+				
+				//por ultimo, a remocao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) remove_LOS(&estr3, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
+				tempo = clock() - tempo;
+				tabela[3][2][ni] += (double)tempo;
+				
+			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
+				//insercao
+				for (int k = 0; k < n[ni]; k++) insere_LOS(&estr3, k);
+				//remocao (decrescente)
+				tempo = clock();
+				for (int k = n[ni]-1; k >= 0; k--) remove_LOS(&estr3, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
+				tempo = clock() - tempo;
+				tabela[4][2][ni] += (double)tempo;
+			}
+			
+			destroi_LOS(&estr3);
+			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
+		}
+		tabela[0][2][ni] \= 10.0;
+		tabela[6][2][ni] \= 10.0;
+		tabela[3][2][ni] \= 10.0;
+		tabela[4][2][ni] \= 10.0;
+		
+		//ABB
+		
+		for (int j = 0; j < 20; j++){
+			
+			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
+				//primeiro, faco a insercao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) insere_ABB(&estr4, k);
+				tempo = clock() - tempo;
+				tabela[0][3][ni] += (double)tempo;
+				
+				//depois, a busca
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) {
+					n_ale = rand();
+					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+						n_ale = n_ale % n[ni];
+						busca_ABB(&estr4, n_ale);
+					} else {	//para a outra metade, faco por inexistentes
+						n_ale += n[ni];
+						busca_ABB(&estr4, n_ale);
+					}
+				}
+				tempo = clock() - tempo;
+				tabela[6][3][ni] += (double)tempo;
+				
+				//por ultimo, a remocao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) remove_ABB(&estr4, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
+				tempo = clock() - tempo;
+				tabela[3][3][ni] += (double)tempo;
+				
+			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
+				//insercao
+				for (int k = 0; k < n[ni]; k++) insere_ABB(&estr4, k);
+				//remocao (decrescente)
+				tempo = clock();
+				for (int k = n[ni]-1; k >= 0; k--) remove_ABB(&estr4, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
+				tempo = clock() - tempo;
+				tabela[4][3][ni] += (double)tempo;
+			}
+			
+			destroi_ABB(&estr4);
+			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
+		}
+		tabela[0][3][ni] \= 10.0;
+		tabela[6][3][ni] \= 10.0;
+		tabela[3][3][ni] \= 10.0;
+		tabela[4][3][ni] \= 10.0;
+		
+		//AVL
+		
+		for (int j = 0; j < 20; j++){
+			
+			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
+				//primeiro, faco a insercao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) insere_AVL(&estr5, k);
+				tempo = clock() - tempo;
+				tabela[0][4][ni] += (double)tempo;
+				
+				//depois, a busca
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) {
+					n_ale = rand();
+					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+						n_ale = n_ale % n[ni];
+						busca_AVL(&estr5, n_ale);
+					} else {	//para a outra metade, faco por inexistentes
+						n_ale += n[ni];
+						busca_AVL(&estr5, n_ale);
+					}
+				}
+				tempo = clock() - tempo;
+				tabela[6][4][ni] += (double)tempo;
+				
+				//por ultimo, a remocao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) remove_AVL(&estr5, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
+				tempo = clock() - tempo;
+				tabela[3][4][ni] += (double)tempo;
+				
+			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
+				//insercao
+				for (int k = 0; k < n[ni]; k++) insere_AVL(&estr5, k);
+				//remocao (decrescente)
+				tempo = clock();
+				for (int k = n[ni]-1; k >= 0; k--) remove_AVL(&estr5, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
+				tempo = clock() - tempo;
+				tabela[4][4][ni] += (double)tempo;
+			}
+			
+			destroi_AVL(&estr5);
+			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
+		}
+		tabela[0][4][ni] \= 10.0;
+		tabela[6][4][ni] \= 10.0;
+		tabela[3][4][ni] \= 10.0;
+		tabela[4][4][ni] \= 10.0;
+		
+		//e LFREQ
+		
+		for (int j = 0; j < 20; j++){
+			
+			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
+				//primeiro, faco a insercao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) insere_LFREQ(&estr6, k);
+				tempo = clock() - tempo;
+				tabela[0][5][ni] += (double)tempo;
+				
+				//depois, a busca
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) {
+					n_ale = rand();
+					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+						n_ale = n_ale % n[ni];
+						busca_LFREQ(&estr6, n_ale);
+					} else {	//para a outra metade, faco por inexistentes
+						n_ale += n[ni];
+						busca_LFREQ(&estr6, n_ale);
+					}
+				}
+				tempo = clock() - tempo;
+				tabela[6][5][ni] += (double)tempo;
+				
+				//por ultimo, a remocao
+				tempo = clock();
+				for (int k = 0; k < n[ni]; k++) remove_LFREQ(&estr6, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
+				tempo = clock() - tempo;
+				tabela[3][5][ni] += (double)tempo;
+				
+			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
+				//insercao
+				for (int k = 0; k < n[ni]; k++) insere_LFREQ(&estr6, k);
+				//remocao (decrescente)
+				tempo = clock();
+				for (int k = n[ni]-1; k >= 0; k--) remove_LFREQ(&estr6, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
+				tempo = clock() - tempo;
+				tabela[4][5][ni] += (double)tempo;
+			}
+			
+			destroi_LFREQ(&estr6);
+			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
+		}
+		tabela[0][5][ni] \= 10.0;
+		tabela[6][5][ni] \= 10.0;
+		tabela[3][5][ni] \= 10.0;
+		tabela[4][5][ni] \= 10.0;
+
+		
+		//agora, faco a insercao decrescente e os testes apropriados, comecando pela BB
+		
+		for (int j = 0; j < 10; j++){
+			
+			//primeiro, faco a insercao
+			media = 0.0;
+			for (int k = n[ni]-1; k >= 0; k--) {
+				tempo = clock();
+				insere_BB(&estr1, k);
+				media += (double)(clock() - tempo);
+			}
+			tabela[1][0][ni] = media/10.0;
+			
+			
+			
+			
+			
 				//primeiro, faco a insercao
 				for (int k = 0; k < n[ni]; k++) {
 					tempo = clock();
@@ -87,197 +408,9 @@ int main(void) {
 				}
 				tabela[3][0][ni] = media/10.0;
 			
-			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
-				//insercao
-				for (int k = 0; k < n[ni]; k++) {
-					insere_BB(&estr1, k);
-				}
-				//remocao (decrescente)
-				for (int k = n[ni]-1; k >= 0; k--) {
-					tempo = clock();
-					remove_BB(&estr1, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
-					media += (double)(clock() - tempo);
-				}
-				tabela[4][0][ni] = media/10.0
-			}
+			destroi_BB(&estr1);
+			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
 		}
-		
-		//agora, faco o mesmo procedimento do for anterior, so que para a LO
-		
-		for (int j = 0; j < 20; j++){
-			media = 0.0;
-			
-			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
-				//primeiro, faco a insercao
-				for (int k = 0; k < n[ni]; k++) {
-					tempo = clock();
-					insere_LO(&estr2, k);
-					media += (double)(clock() - tempo);
-				}
-				tabela[0][1][ni] = media/10.0;
-				
-				//depois, a busca
-				media = 0.0;
-				for (int k = 0; k < n[ni]; k++) {
-					n_ale = rand();
-					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
-						n_ale = n_ale % n[ni];
-						tempo = clock();
-						busca_LO(&estr2, n_ale);
-						media += (double)(clock() - tempo);
-					} else {	//para a outra metade, faco por inexistentes
-						n_ale += n[ni];
-						tempo = clock();
-						busca_LO(&estr2, n_ale);
-						media += (double)(clock() - tempo);
-					}
-				}
-				tabela[6][1][ni] = media/10.0;
-				
-				//por ultimo, a remocao
-				media = 0.0;
-				for (int k = 0; k < n[ni]; k++) {
-					tempo = clock();
-					remove_LO(&estr2, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
-					media += (double)(clock() - tempo);
-				}
-				tabela[3][1][ni] = media/10.0;
-			
-			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
-				//insercao
-				for (int k = 0; k < n[ni]; k++) {
-					insere_LO(&estr2, k);
-				}
-				//remocao (decrescente)
-				for (int k = n[ni]-1; k >= 0; k--) {
-					tempo = clock();
-					remove_LO(&estr2, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
-					media += (double)(clock() - tempo);
-				}
-				tabela[4][1][ni] = media/10.0
-			}
-		}
-		
-		//para a LOS
-		
-			for (int j = 0; j < 20; j++){
-			media = 0.0;
-			
-			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
-				//primeiro, faco a insercao
-				for (int k = 0; k < n[ni]; k++) {
-					tempo = clock();
-					insere_LOS(&estr3, k);
-					media += (double)(clock() - tempo);
-				}
-				tabela[0][2][ni] = media/10.0;
-				
-				//depois, a busca
-				media = 0.0;
-				for (int k = 0; k < n[ni]; k++) {
-					n_ale = rand();
-					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
-						n_ale = n_ale % n[ni];
-						tempo = clock();
-						busca_LOS(&estr3, n_ale);
-						media += (double)(clock() - tempo);
-					} else {	//para a outra metade, faco por inexistentes
-						n_ale += n[ni];
-						tempo = clock();
-						busca_LOS(&estr3, n_ale);
-						media += (double)(clock() - tempo);
-					}
-				}
-				tabela[6][2][ni] = media/10.0;
-				
-				//por ultimo, a remocao
-				media = 0.0;
-				for (int k = 0; k < n[ni]; k++) {
-					tempo = clock();
-					remove_LOS(&estr3, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
-					media += (double)(clock() - tempo);
-				}
-				tabela[3][2][ni] = media/10.0;
-			
-			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
-				//insercao
-				for (int k = 0; k < n[ni]; k++) {
-					insere_LOS(&estr3, k);
-				}
-				//remocao (decrescente)
-				for (int k = n[ni]-1; k >= 0; k--) {
-					tempo = clock();
-					remove_LOS(&estr3, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
-					media += (double)(clock() - tempo);
-				}
-				tabela[4][2][ni] = media/10.0
-			}
-		}
-		
-		//ABB
-		
-			for (int j = 0; j < 20; j++){
-			media = 0.0;
-			
-			if (j < 10) {	//as primeiras 10 insercoes irao ajudar na contagem do tempo da busca e da remocao crescente
-				//primeiro, faco a insercao
-				for (int k = 0; k < n[ni]; k++) {
-					tempo = clock();
-					insere_ABB(&estr4, k);
-					media += (double)(clock() - tempo);
-				}
-				tabela[0][3][ni] = media/10.0;
-				
-				//depois, a busca
-				media = 0.0;
-				for (int k = 0; k < n[ni]; k++) {
-					n_ale = rand();
-					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
-						n_ale = n_ale % n[ni];
-						tempo = clock();
-						busca_ABB(&estr4, n_ale);
-						media += (double)(clock() - tempo);
-					} else {	//para a outra metade, faco por inexistentes
-						n_ale += n[ni];
-						tempo = clock();
-						busca_ABB(&estr4, n_ale);
-						media += (double)(clock() - tempo);
-					}
-				}
-				tabela[6][3][ni] = media/10.0;
-				
-				//por ultimo, a remocao
-				media = 0.0;
-				for (int k = 0; k < n[ni]; k++) {
-					tempo = clock();
-					remove_ABB(&estr4, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
-					media += (double)(clock() - tempo);
-				}
-				tabela[3][3][ni] = media/10.0;
-			
-			} else {	//as ultimas 10 insercoes irao ajudar apenas na contagem da remocao decrescente
-				//insercao
-				for (int k = 0; k < n[ni]; k++) {
-					insere_ABB(&estr4, k);
-				}
-				//remocao (decrescente)
-				for (int k = n[ni]-1; k >= 0; k--) {
-					tempo = clock();
-					remove_ABB(&estr4, k+n[ni]/2);	//os primeiros k/2 numeros serao inexistentes, mas os ultimos k/2 existirao 
-					media += (double)(clock() - tempo);
-				}
-				tabela[4][3][ni] = media/10.0
-			}
-		}
-		
-		//AVL
-		
-		//e LFREQ
-		
-
-
-
-
 
 
 
