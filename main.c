@@ -28,7 +28,6 @@ int main(void) {
 	//LFREQ estr6;	//estrutura 6
 	int n[4];	//guarda os numeros que vao ser utilizados para os testes
 	clock_t tempo;
-	double media;
 	int n_ale;
 	double tabela[9][6][4];	//9 tabelas, cada uma com 6 linhas e 4 colunas
 	
@@ -359,94 +358,189 @@ int main(void) {
 		//agora, faco a insercao decrescente e os testes apropriados, comecando pela BB
 		
 		for (int j = 0; j < 10; j++){
-			
 			//primeiro, faco a insercao
-			media = 0.0;
-			for (int k = n[ni]-1; k >= 0; k--) {
-				tempo = clock();
-				insere_BB(&estr1, k);
-				media += (double)(clock() - tempo);
+			tempo = clock();
+			for (int k = n[ni]-1; k >= 0; k--) insere_BB(&estr1, k);
+			tempo = clock() - tempo;
+			tabela[1][0][ni] += tempo;
+			
+			//agora, faco a busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_BB(&estr1, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_BB(&estr1, n_ale);
+				}
 			}
-			tabela[1][0][ni] = media/10.0;
-			
-			
-			
-			
-			
-				//primeiro, faco a insercao
-				for (int k = 0; k < n[ni]; k++) {
-					tempo = clock();
-					insere_BB(&estr1, k);
-					media += (double)(clock() - tempo);
-				}
-				tabela[0][0][ni] = media/10.0;
-				
-				//depois, a busca
-				media = 0.0;
-				for (int k = 0; k < n[ni]; k++) {
-					n_ale = rand();
-					if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
-						n_ale = n_ale % n[ni];
-						tempo = clock();
-						busca_BB(&estr1, n_ale);
-						media += (double)(clock() - tempo);
-					} else {	//para a outra metade, faco por inexistentes
-						n_ale += n[ni];
-						tempo = clock();
-						busca_BB(&estr1, n_ale);
-						media += (double)(clock() - tempo);
-					}
-				}
-				tabela[6][0][ni] = media/10.0;
-				
-				//por ultimo, a remocao
-				media = 0.0;
-				for (int k = 0; k < n[ni]; k++) {
-					tempo = clock();
-					remove_BB(&estr1, k+n[ni]/2);	//fazendo assim, estou tentando remover tanto numeros existentes quanto numeros inexistentes, numa proporcao de 1:1 (os primeiros k/2 existirao, mas os ultimos k/2 nao)
-					media += (double)(clock() - tempo);
-				}
-				tabela[3][0][ni] = media/10.0;
+			tempo = clock() - tempo;
+			tabela[7][0][ni] += tempo;
 			
 			destroi_BB(&estr1);
 			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
 		}
+		tabela[1][0][ni] \= 10.0;
+		tabela[7][0][ni] \= 10.0;
+		
+		//LO
+		
+		for (int j = 0; j < 10; j++){
+			//primeiro, faco a insercao
+			tempo = clock();
+			for (int k = n[ni]-1; k >= 0; k--) insere_LO(&estr2, k);
+			tempo = clock() - tempo;
+			tabela[1][1][ni] += tempo;
+			
+			//agora, faco a busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_LO(&estr2, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_LO(&estr2, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[7][1][ni] += tempo;
+			
+			destroi_LO(&estr2);
+			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
+		}
+		tabela[1][1][ni] \= 10.0;
+		tabela[7][1][ni] \= 10.0;
+			
+		//LOS
+		
+		for (int j = 0; j < 10; j++){
+			//primeiro, faco a insercao
+			tempo = clock();
+			for (int k = n[ni]-1; k >= 0; k--) insere_LOS(&estr3, k);
+			tempo = clock() - tempo;
+			tabela[1][2][ni] += tempo;
+			
+			//agora, faco a busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_LOS(&estr3, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_LOS(&estr3, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[7][2][ni] += tempo;
+			
+			destroi_LOS(&estr3);
+			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
+		}
+		tabela[1][2][ni] \= 10.0;
+		tabela[7][2][ni] \= 10.0;
+			
+		//ABB
+		
+		for (int j = 0; j < 10; j++){
+			//primeiro, faco a insercao
+			tempo = clock();
+			for (int k = n[ni]-1; k >= 0; k--) insere_ABB(&estr4, k);
+			tempo = clock() - tempo;
+			tabela[1][3][ni] += tempo;
+			
+			//agora, faco a busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_ABB(&estr4, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_ABB(&estr4, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[7][3][ni] += tempo;
+			
+			destroi_ABB(&estr4);
+			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
+		}
+		tabela[1][3][ni] \= 10.0;
+		tabela[7][3][ni] \= 10.0;
+			
+		//AVL
+		
+		for (int j = 0; j < 10; j++){
+			//primeiro, faco a insercao
+			tempo = clock();
+			for (int k = n[ni]-1; k >= 0; k--) insere_AVL(&estr5, k);
+			tempo = clock() - tempo;
+			tabela[1][4][ni] += tempo;
+			
+			//agora, faco a busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_AVL(&estr5, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_AVL(&estr5, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[7][4][ni] += tempo;
+			
+			destroi_AVL(&estr5);
+			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
+		}
+		tabela[1][4][ni] \= 10.0;
+		tabela[7][4][ni] \= 10.0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		//e LFREQ
+		
+		for (int j = 0; j < 10; j++){
+			//primeiro, faco a insercao
+			tempo = clock();
+			for (int k = n[ni]-1; k >= 0; k--) insere_LFREQ(&estr6, k);
+			tempo = clock() - tempo;
+			tabela[1][5][ni] += tempo;
+			
+			//agora, faco a busca
+			tempo = clock();
+			for (int k = 0; k < n[ni]; k++) {
+				n_ale = rand();
+				if (k < n[ni]/2) {	//para a primeira metade, faco busca por numeros existentes
+					n_ale = n_ale % n[ni];
+					busca_LFREQ(&estr6, n_ale);
+				} else {	//para a outra metade, faco por inexistentes
+					n_ale += n[ni];
+					busca_LFREQ(&estr6, n_ale);
+				}
+			}
+			tempo = clock() - tempo;
+			tabela[7][5][ni] += tempo;
+			
+			destroi_LFREQ(&estr6);
+			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
+		}
+		tabela[1][5][ni] \= 10.0;
+		tabela[7][5][ni] \= 10.0;
+		
+		
+		//agora, so falta a insercao aleatoria
+		
+		
+		
+		
 		
 		
 		
