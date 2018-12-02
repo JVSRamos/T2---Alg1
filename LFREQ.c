@@ -9,14 +9,13 @@ void cria_LFREQ(LFREQ *l) {
     return;
 }
 
-void apaga_LFREQ(LFREQ *l) {
+void destroi_LFREQ(LFREQ *l) {
     No_LFREQ *p;
     p = l->ini;
     do {
-        l->ini = l->ini->prox;
+        p = p->prox;
         free(p);
-        p = l->ini;
-    } while (l->ini != l->fim);
+    } while (p != l->ini);
     return;
 }
 
@@ -43,78 +42,69 @@ int insere_LFREQ(LFREQ *l, int x) {
 
 void buscainterna_LFREQ(LFREQ *l, int x, No_LFREQ **p) {
     *p = l->ini;
-    while (*p != NULL && (*p)->info != x) {
+    // contador para marcar se ja passou uma vez a lista
+    int count = 0;
+    
+    do {
         *p = (*p)->prox;
-    }
+        count++;
+    } while (*p != l->ini && (*p)->info != x);
 
-    return;
+	//caso em que nao acha o elemento
+	if (count > 1 && *p == l->ini)  *p = NULL;
+		return;
 }
-
-
-void swap(No_LFREQ* p, No_LFREQ* ant) {
-
-    No_LFREQ* aux = p->prox;
-
-    p->prox = ant;
-    p->ant = ant->ant;
-    ant->prox = aux;
-    ant->ant = p;
-}
-
 
 int busca_LFREQ(LFREQ *l, int x) {
 
     No_LFREQ *p;
     buscainterna_LFREQ(l, x, &p);
 
+
     if (p != NULL && p != l->ini) {
-        //swap(p,p->ant); 
-
-        No_LFREQ* aux = p->prox;
-
-        p->prox = p->ant;
-        p->ant = p->ant->ant;
-        p->ant->prox = aux;
-        p->ant->ant = p;
-
-
+     
+		int aux = p->info;
+		p->info = p->ant->info;
+		p->ant->info = aux;
+		
         return 1;
     }
 
-    if (p != NULL && p == l->ini) return 1;
+	if (p != NULL && p == l->ini) return 1;
 
     return 0;
 }
 
-/*
-void retira_LFREQ(LFREQ *l, int x) {
 
-    No_LFREQ* pos;
-    buscainterna_LFREQ(l,x,pos);
+void remove_LFREQ(LFREQ *l, int x) {
 
-    if (pos != NULL) {
-        if (pos == l->ini) {
-            pos->prox = l->ini;
+    No_LFREQ* p;
+    buscainterna_LFREQ(l,x,&p);
+
+    if (p != NULL) {
+        if (p == l->ini) {
+            l->ini = p->prox;
             l->ini->ant = l->fim;
-            l->fim_>prox = l->ini;
+            l->fim->prox = l->ini;
         }
-        else if (pos == l->end) {
-            pos->ant = l->fim;
-            l->fim_>prox = l->ini;
+        else if (p == l->fim) {
+            l->fim = p->ant;
+            l->fim->prox = l->ini;
             l->ini->ant = l->fim;   
         }
         else {
-            pos->ant = pos->prox;
-            
-
+            p->ant->prox = p->prox;
+            p->prox->ant = p->ant;
+           
         }
+     free(p);
 
     }
 
 
 
 }
-*/
+
 
 
 void imprime(LFREQ l) {
