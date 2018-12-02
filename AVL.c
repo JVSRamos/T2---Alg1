@@ -67,7 +67,7 @@ int buscaSub(No_AVL *p, elem x) {
     return (x < p->info) ? buscaSub(p->esq, x) : buscaSub(p->dir, x);
 }
 
-int busca(AVL a, elem x) {
+int busca_AVL(AVL a, elem x) {
     return buscaSub(a.raiz, x); // inicia recursao
 }
 
@@ -188,12 +188,6 @@ int insere_AVL(AVL *a, elem x) {
 }
 
 
-
-int remove_AVL(AVL *a, elem x) {
-	int encolheu;
-	return remocaoSub(&(a->raiz), x, &encolheu);
-}
-
 int remocaoSub(No_AVL **p, elem x, int *encolheu) {
 	
 	int num_filhos = 0;
@@ -228,11 +222,13 @@ int remocaoSub(No_AVL **p, elem x, int *encolheu) {
 		}
 		
 	}
-	
+
+	if (*p == NULL) return 1;
+
 	retorno = (x > (*p)->info) ? remocaoSub((&(*p)->dir),x,encolheu) : remocaoSub((&(*p)->esq),x,encolheu); 
 	
 	if (!retorno && encolheu) {
-		(*p)->fb += (x < (*p)->info) ? -1 : 1; // atualiza fator de balanceamento
+		(*p)->fb += (x < (*p)->info) ? 1 : -1; // atualiza fator de balanceamento
         if ((*p)->fb == 0 || (*p)->fb == 2 || (*p)->fb == -2) {
             *encolheu = 0; // arvore parou de crescer: 0 => melhorou o balanceamento; 2 ou -2 => sera feito o rebalanceamento
             switch ((*p)->fb) {
@@ -261,14 +257,17 @@ int remocaoSub(No_AVL **p, elem x, int *encolheu) {
             }
         }
 	}
-	
-	
-	
+
+    return retorno;
 
 }
 
 
 
+int remove_AVL(AVL *a, elem x) {
+    int encolheu;
+    return remocaoSub(&(a->raiz), x, &encolheu);
+}
 
 
 
