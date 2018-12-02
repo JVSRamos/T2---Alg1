@@ -8,8 +8,8 @@ typedef struct {
 } LFREQ;
 
 void cria_LFREQ(LFREQ *l);
-void apaga_LFREQ(LFREQ *l);
+void destroi_LFREQ(LFREQ *l);
 int insere_LFREQ(LFREQ *l, int x);
 int busca_LFREQ(LFREQ *l, int x);
-void retira_LFREQ(LFREQ *l, int x);
+void remove_LFREQ(LFREQ *l, int x);
 void imprime(LFREQ l);
