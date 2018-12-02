@@ -5,15 +5,15 @@ void cria_BB(BB *b) {
 }
 
 
-void shift_vet_insert(BB* l,int pos) {
+void shift_vet_insert(BB* b,int pos) {
 
 	int aux,aux2;
 
-	aux = l->v[pos];
+	aux = b->v[pos];
 
-	for (int i = pos; i < l->tam_atual + 1; ++i) {
-		aux2 = l->v[i+1];
-		l->v[i+1] = aux;
+	for (int i = pos; i < b->tam_atual + 1; ++i) {
+		aux2 = b->v[i+1];
+		b->v[i+1] = aux;
 		aux = aux2;
 	}
 
@@ -30,13 +30,13 @@ void shift_vet(BB *b,int pos) {
 	b->tam_atual--;
 }
 
-int is_full(BB *l) {
-	return (l->tam_atual == tam-1) ? 1 : 0;
+int is_full(BB *b) {
+	return (b->tam_atual == tam-1);
 }
 
 int intern_search(BB *b, int x) {
 
-	for (int i = 0; i < b->tam_atual+1; ++i) {
+	for (int i = 0; i < b->tam_atual; ++i) {
 		if (b->v[i] == x) return i;
 	}
 
@@ -65,7 +65,7 @@ int busca_BB(BB *b, int chave, int ini, int fim) {
 
 int intern_comp(BB *b, int x) {
 
-	for (int i = 0; i < b->tam_atual+1; ++i) {
+	for (int i = 0; i < b->tam_atual; ++i) {
 		if (b->v[i] > x) return i;
 	}
 

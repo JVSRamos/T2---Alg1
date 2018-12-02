@@ -187,6 +187,18 @@ int insere_AVL(AVL *a, elem x) {
     return insercaoSub(&(a->raiz), x, &cresceu); // inicia recursao
 }
 
+int alturaSub(No_AVL *p) {
+    int aesq, adir;
+    if (p == NULL)
+        return 0; // arvore nula
+    aesq = alturaSub(p->esq); // altura da subarvore esquerda
+    adir = alturaSub(p->dir); // altura da subarvore direita
+    return (aesq > adir)? aesq + 1 : adir + 1;
+}
+
+int calculaFB(No_AVL *p) {
+	return (alturaSub(p->dir))-(alturaSub(p->esq));
+}
 
 int remocaoSub(No_AVL **p, elem x, int *encolheu) {
 	
@@ -228,9 +240,9 @@ int remocaoSub(No_AVL **p, elem x, int *encolheu) {
 	retorno = (x > (*p)->info) ? remocaoSub((&(*p)->dir),x,encolheu) : remocaoSub((&(*p)->esq),x,encolheu); 
 	
 	if (!retorno && encolheu) {
-		(*p)->fb += (x < (*p)->info) ? 1 : -1; // atualiza fator de balanceamento
+		(*p)->fb = calculaFB(*p); // atualiza fator de balanceamento
         if ((*p)->fb == 0 || (*p)->fb == 2 || (*p)->fb == -2) {
-            *encolheu = 0; // arvore parou de crescer: 0 => melhorou o balanceamento; 2 ou -2 => sera feito o rebalanceamento
+            //*encolheu = 0; // arvore parou de crescer: 0 => melhorou o balanceamento; 2 ou -2 => sera feito o rebalanceamento
             switch ((*p)->fb) {
                 case 2: // arvore muito alta a direita
                     if ((*p)->dir->fb == 1) { // mesmo sinal

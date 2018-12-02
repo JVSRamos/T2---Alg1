@@ -1,4 +1,4 @@
-#define tam 1000000
+#define tam 100000
 
 typedef struct {
 	int v[tam];

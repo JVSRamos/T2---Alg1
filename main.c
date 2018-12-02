@@ -1,6 +1,6 @@
 #include <stdio.h>	/* printf */
 #include <stdlib.h>	/* rand, srand */
-#include <time.h>	/* time, clock_t, clock, CLOCKS_PER_SEC */
+#include <time.h>	/* time, clock_t, clock */
 #include "BB.h"
 #include "LO.h"
 #include "LOS.h"
@@ -9,11 +9,7 @@
 #include "LFREQ.h"
 
 /*
-	TODO:
-		AVL remocao
-		BB - falta sort
-		Verificar se vai dar bosta no vetor "usado" na segunda rodagem do for
-		Fazer a funcao de remocao aleatoria (e garantir a proporcao n/2:n/2)
+	TODO: Remover TODOS os "/*" (especialmente no final, onde eu destruo)
 */
 
 int main(void) {
@@ -52,7 +48,7 @@ int main(void) {
 			}
 		}
 	}
-	
+	/*
 	for (int ni = 0; ni < 4; ni++) {
 		//a partir daqui, ja tenho um valor de n fixado
 		
@@ -356,7 +352,7 @@ int main(void) {
 		tabela[6][5][ni] /= 10.0;
 		tabela[3][5][ni] /= 10.0;
 		tabela[4][5][ni] /= 10.0;
-
+		
 		
 		//agora, faco a insercao decrescente e os testes apropriados, comecando pela BB
 		
@@ -417,7 +413,7 @@ int main(void) {
 		}
 		tabela[1][1][ni] /= 10.0;
 		tabela[7][1][ni] /= 10.0;
-			
+		
 		//LOS
 		
 		for (int j = 0; j < 10; j++) {
@@ -447,7 +443,7 @@ int main(void) {
 		}
 		tabela[1][2][ni] /= 10.0;
 		tabela[7][2][ni] /= 10.0;
-			
+		
 		//ABB
 		
 		for (int j = 0; j < 10; j++) {
@@ -809,7 +805,7 @@ int main(void) {
 		tabela[8][3][ni] /= 10.0;
 		tabela[5][3][ni] /= 10.0;
 		
-				//para a LOS
+		//AVL
 		
 		for (int j = 0; j < 10; j++) {
 			count = 0;
@@ -943,7 +939,7 @@ int main(void) {
 		tabela[8][5][ni] /= 10.0;
 		tabela[5][5][ni] /= 10.0;
 	}
-	
+	*/
 	
 	printf("\tTabela 1: Tempo de insercao crescente\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
@@ -1036,14 +1032,14 @@ int main(void) {
 	printf("-");
 	
 	
-	destroi_BB(&estr1);
-	destroi_LO(&estr2);
-	destroi_LOS(&estr3);
-	destroi_ABB(&estr4);
-	destroi_AVL(&estr5);
-	destroi_LFREQ(&estr6);
-	free(usado);
-	free(numero);
+	//destroi_BB(&estr1);
+	//destroi_LO(&estr2);
+	//destroi_LOS(&estr3);
+	//destroi_ABB(&estr4);
+	//destroi_AVL(&estr5);
+	//destroi_LFREQ(&estr6);
+	//free(usado);
+	//free(numero);
 
 	return 0;
 }
