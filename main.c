@@ -591,6 +591,8 @@ int main(void) {
 		tabela[8][0][ni] \= 10.0;
 		tabela[5][0][ni] \= 10.0;
 		
+				//falta fazer a remocao e replica esse for de cima para todas as outras estruturas
+		
 	}
 	
 	
