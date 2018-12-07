@@ -237,9 +237,8 @@ int remocaoSub(No_AVL **p, elem x, int *encolheu) {
 
 	if (*p == NULL) return 1;
 
-	retorno = (x > (*p)->info) ? remocaoSub((&(*p)->dir),x,encolheu) : remocaoSub((&(*p)->esq),x,encolheu); 
+	return (x > (*p)->info) ? remocaoSub((&(*p)->dir),x,encolheu) : remocaoSub((&(*p)->esq),x,encolheu); 
 	
-	if (!retorno && encolheu) {
 		(*p)->fb = calculaFB(*p); // atualiza fator de balanceamento
         if ((*p)->fb == 0 || (*p)->fb == 2 || (*p)->fb == -2) {
             //*encolheu = 0; // arvore parou de crescer: 0 => melhorou o balanceamento; 2 ou -2 => sera feito o rebalanceamento
@@ -250,9 +249,10 @@ int remocaoSub(No_AVL **p, elem x, int *encolheu) {
                         // atualiza fatores de balanceamento
                         (*p)->fb = 0;
                         (*p)->esq->fb = 0;
+                        (*p)->fb = calculaFB(*p);
                     } else { // sinais opostos
                         DE(p); // rotacao dupla direita-esquerda
-                        atualizaFB(*p); // atualiza fatores de balanceamento
+                        (*p)->fb = calculaFB(*p); // atualiza fatores de balanceamento
                     }
                     break;
                 case -2: // arvore muito alta a esquerda
@@ -261,16 +261,14 @@ int remocaoSub(No_AVL **p, elem x, int *encolheu) {
                         // atualiza fatores de balanceamento
                         (*p)->fb = 0;
                         (*p)->dir->fb = 0;
+                        (*p)->fb = calculaFB(*p);
                     } else { // sinais opostos
                         ED(p); // rotacao dupla esquerda-direita
-                        atualizaFB(*p); // atualiza fatores de balanceamento
+                        (*p)->fb = calculaFB(*p); // atualiza fatores de balanceamento
                     }
                     break;
             }
         }
-	}
-
-    return retorno;
 
 }
 
