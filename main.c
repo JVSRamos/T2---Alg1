@@ -10,6 +10,7 @@
 
 /*
 	TODO: Remover TODOS os "/*" (especialmente no final, onde eu destruo)
+	Mudar o for para rodar 4 vezes ao inves de 3
 */
 
 int main(void) {
@@ -48,8 +49,8 @@ int main(void) {
 			}
 		}
 	}
-	/*
-	for (int ni = 0; ni < 4; ni++) {
+	
+	for (int ni = 0; ni < 3; ni++) {
 		//a partir daqui, ja tenho um valor de n fixado
 		
 		//primeiro, faco a insercao crescente e os testes apropriados para a BB
@@ -98,9 +99,13 @@ int main(void) {
 			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
 		}
 		tabela[0][0][ni] /= 10.0;
+		tabela[0][0][ni] /= CLOCKS_PER_SEC;
 		tabela[6][0][ni] /= 10.0;
+		tabela[6][0][ni] /= CLOCKS_PER_SEC;
 		tabela[3][0][ni] /= 10.0;
+		tabela[3][0][ni] /= CLOCKS_PER_SEC;
 		tabela[4][0][ni] /= 10.0;
+		tabela[4][0][ni] /= CLOCKS_PER_SEC;
 		
 		
 		//agora, faco o mesmo procedimento do for anterior, so que para a LO
@@ -149,9 +154,13 @@ int main(void) {
 			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
 		}
 		tabela[0][1][ni] /= 10.0;
+		tabela[0][1][ni] /= CLOCKS_PER_SEC;
 		tabela[6][1][ni] /= 10.0;
+		tabela[6][1][ni] /= CLOCKS_PER_SEC;
 		tabela[3][1][ni] /= 10.0;
+		tabela[3][1][ni] /= CLOCKS_PER_SEC;
 		tabela[4][1][ni] /= 10.0;
+		tabela[4][1][ni] /= CLOCKS_PER_SEC;
 		
 		//para a LOS
 		
@@ -199,9 +208,13 @@ int main(void) {
 			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
 		}
 		tabela[0][2][ni] /= 10.0;
+		tabela[0][2][ni] /= CLOCKS_PER_SEC;
 		tabela[6][2][ni] /= 10.0;
+		tabela[6][2][ni] /= CLOCKS_PER_SEC;
 		tabela[3][2][ni] /= 10.0;
+		tabela[3][2][ni] /= CLOCKS_PER_SEC;
 		tabela[4][2][ni] /= 10.0;
+		tabela[4][2][ni] /= CLOCKS_PER_SEC;
 		
 		//ABB
 		
@@ -249,9 +262,13 @@ int main(void) {
 			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
 		}
 		tabela[0][3][ni] /= 10.0;
+		tabela[0][3][ni] /= CLOCKS_PER_SEC;
 		tabela[6][3][ni] /= 10.0;
+		tabela[6][3][ni] /= CLOCKS_PER_SEC;
 		tabela[3][3][ni] /= 10.0;
+		tabela[3][3][ni] /= CLOCKS_PER_SEC;
 		tabela[4][3][ni] /= 10.0;
+		tabela[4][3][ni] /= CLOCKS_PER_SEC;
 		
 		//AVL
 		
@@ -299,9 +316,13 @@ int main(void) {
 			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
 		}
 		tabela[0][4][ni] /= 10.0;
+		tabela[0][4][ni] /= CLOCKS_PER_SEC;
 		tabela[6][4][ni] /= 10.0;
+		tabela[6][4][ni] /= CLOCKS_PER_SEC;
 		tabela[3][4][ni] /= 10.0;
+		tabela[3][4][ni] /= CLOCKS_PER_SEC;
 		tabela[4][4][ni] /= 10.0;
+		tabela[4][4][ni] /= CLOCKS_PER_SEC;
 		
 		//e LFREQ
 		
@@ -349,9 +370,13 @@ int main(void) {
 			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
 		}
 		tabela[0][5][ni] /= 10.0;
+		tabela[0][5][ni] /= CLOCKS_PER_SEC;
 		tabela[6][5][ni] /= 10.0;
+		tabela[6][5][ni] /= CLOCKS_PER_SEC;
 		tabela[3][5][ni] /= 10.0;
+		tabela[3][5][ni] /= CLOCKS_PER_SEC;
 		tabela[4][5][ni] /= 10.0;
+		tabela[4][5][ni] /= CLOCKS_PER_SEC;
 		
 		
 		//agora, faco a insercao decrescente e os testes apropriados, comecando pela BB
@@ -382,7 +407,9 @@ int main(void) {
 			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
 		}
 		tabela[1][0][ni] /= 10.0;
+		tabela[1][0][ni] /= CLOCKS_PER_SEC;
 		tabela[7][0][ni] /= 10.0;
+		tabela[7][0][ni] /= CLOCKS_PER_SEC;
 		
 		//LO
 		
@@ -412,7 +439,9 @@ int main(void) {
 			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
 		}
 		tabela[1][1][ni] /= 10.0;
+		tabela[1][1][ni] /= CLOCKS_PER_SEC;
 		tabela[7][1][ni] /= 10.0;
+		tabela[7][1][ni] /= CLOCKS_PER_SEC;
 		
 		//LOS
 		
@@ -442,7 +471,9 @@ int main(void) {
 			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
 		}
 		tabela[1][2][ni] /= 10.0;
+		tabela[1][2][ni] /= CLOCKS_PER_SEC;
 		tabela[7][2][ni] /= 10.0;
+		tabela[7][2][ni] /= CLOCKS_PER_SEC;
 		
 		//ABB
 		
@@ -472,7 +503,9 @@ int main(void) {
 			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
 		}
 		tabela[1][3][ni] /= 10.0;
+		tabela[1][3][ni] /= CLOCKS_PER_SEC;
 		tabela[7][3][ni] /= 10.0;
+		tabela[7][3][ni] /= CLOCKS_PER_SEC;
 			
 		//AVL
 		
@@ -502,7 +535,9 @@ int main(void) {
 			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
 		}
 		tabela[1][4][ni] /= 10.0;
+		tabela[1][4][ni] /= CLOCKS_PER_SEC;
 		tabela[7][4][ni] /= 10.0;
+		tabela[7][4][ni] /= CLOCKS_PER_SEC;
 
 		//e LFREQ
 		
@@ -532,7 +567,9 @@ int main(void) {
 			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
 		}
 		tabela[1][5][ni] /= 10.0;
+		tabela[1][5][ni] /= CLOCKS_PER_SEC;
 		tabela[7][5][ni] /= 10.0;
+		tabela[7][5][ni] /= CLOCKS_PER_SEC;
 		
 		
 		//agora, so falta a insercao e remocao aleatorias
@@ -601,8 +638,11 @@ int main(void) {
 			cria_BB(&estr1);	//faco isso para "resetar" a estrutura
 		}
 		tabela[2][0][ni] /= 10.0;
+		tabela[2][0][ni] /= CLOCKS_PER_SEC;
 		tabela[8][0][ni] /= 10.0;
+		tabela[8][0][ni] /= CLOCKS_PER_SEC;
 		tabela[5][0][ni] /= 10.0;
+		tabela[5][0][ni] /= CLOCKS_PER_SEC;
 		
 		//agora para a LO
 		
@@ -668,8 +708,11 @@ int main(void) {
 			cria_LO(&estr2);	//faco isso para "resetar" a estrutura
 		}
 		tabela[2][1][ni] /= 10.0;
+		tabela[2][1][ni] /= CLOCKS_PER_SEC;
 		tabela[8][1][ni] /= 10.0;
+		tabela[8][1][ni] /= CLOCKS_PER_SEC;
 		tabela[5][1][ni] /= 10.0;
+		tabela[5][1][ni] /= CLOCKS_PER_SEC;
 		
 		//para a LOS
 		
@@ -735,8 +778,11 @@ int main(void) {
 			cria_LOS(&estr3);	//faco isso para "resetar" a estrutura
 		}
 		tabela[2][2][ni] /= 10.0;
+		tabela[2][2][ni] /= CLOCKS_PER_SEC;
 		tabela[8][2][ni] /= 10.0;
+		tabela[8][2][ni] /= CLOCKS_PER_SEC;
 		tabela[5][2][ni] /= 10.0;
+		tabela[5][2][ni] /= CLOCKS_PER_SEC;
 		
 		//ABB
 		
@@ -802,8 +848,11 @@ int main(void) {
 			cria_ABB(&estr4);	//faco isso para "resetar" a estrutura
 		}
 		tabela[2][3][ni] /= 10.0;
+		tabela[2][3][ni] /= CLOCKS_PER_SEC;
 		tabela[8][3][ni] /= 10.0;
+		tabela[8][3][ni] /= CLOCKS_PER_SEC;
 		tabela[5][3][ni] /= 10.0;
+		tabela[5][3][ni] /= CLOCKS_PER_SEC;
 		
 		//AVL
 		
@@ -869,8 +918,11 @@ int main(void) {
 			cria_AVL(&estr5);	//faco isso para "resetar" a estrutura
 		}
 		tabela[2][4][ni] /= 10.0;
+		tabela[2][4][ni] /= CLOCKS_PER_SEC;
 		tabela[8][4][ni] /= 10.0;
+		tabela[8][4][ni] /= CLOCKS_PER_SEC;
 		tabela[5][4][ni] /= 10.0;
+		tabela[5][4][ni] /= CLOCKS_PER_SEC;
 		
 		//e, por ultimo, para a LFREQ
 		
@@ -936,10 +988,13 @@ int main(void) {
 			cria_LFREQ(&estr6);	//faco isso para "resetar" a estrutura
 		}
 		tabela[2][5][ni] /= 10.0;
+		tabela[2][5][ni] /= CLOCKS_PER_SEC;
 		tabela[8][5][ni] /= 10.0;
+		tabela[8][5][ni] /= CLOCKS_PER_SEC;
 		tabela[5][5][ni] /= 10.0;
+		tabela[5][5][ni] /= CLOCKS_PER_SEC;
 	}
-	*/
+	
 	
 	printf("\tTabela 1: Tempo de insercao crescente\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
@@ -953,82 +1008,82 @@ int main(void) {
 	
 	printf("\tTabela 2: Tempo de insercao decrescente\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
-	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][0][0], tabela[0][0][1], tabela[0][0][2], tabela[0][0][3]);
-	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[0][1][0], tabela[0][1][1], tabela[0][1][2], tabela[0][1][3]);
-	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[0][2][0], tabela[0][2][1], tabela[0][2][2], tabela[0][2][3]);
-	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][3][0], tabela[0][3][1], tabela[0][3][2], tabela[0][3][3]);
-	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[0][4][0], tabela[0][4][1], tabela[0][4][2], tabela[0][4][3]);
-	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[0][5][0], tabela[0][5][1], tabela[0][5][2], tabela[0][5][3]);
+	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[1][0][0], tabela[1][0][1], tabela[1][0][2], tabela[1][0][3]);
+	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[1][1][0], tabela[1][1][1], tabela[1][1][2], tabela[1][1][3]);
+	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[1][2][0], tabela[1][2][1], tabela[1][2][2], tabela[1][2][3]);
+	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[1][3][0], tabela[1][3][1], tabela[1][3][2], tabela[1][3][3]);
+	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[1][4][0], tabela[1][4][1], tabela[1][4][2], tabela[1][4][3]);
+	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[1][5][0], tabela[1][5][1], tabela[1][5][2], tabela[1][5][3]);
 	printf("-");
 	
 	printf("\tTabela 3: Tempo de insercao aleatoria\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
-	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][0][0], tabela[0][0][1], tabela[0][0][2], tabela[0][0][3]);
-	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[0][1][0], tabela[0][1][1], tabela[0][1][2], tabela[0][1][3]);
-	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[0][2][0], tabela[0][2][1], tabela[0][2][2], tabela[0][2][3]);
-	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][3][0], tabela[0][3][1], tabela[0][3][2], tabela[0][3][3]);
-	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[0][4][0], tabela[0][4][1], tabela[0][4][2], tabela[0][4][3]);
-	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[0][5][0], tabela[0][5][1], tabela[0][5][2], tabela[0][5][3]);
+	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[2][0][0], tabela[2][0][1], tabela[2][0][2], tabela[2][0][3]);
+	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[2][1][0], tabela[2][1][1], tabela[2][1][2], tabela[2][1][3]);
+	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[2][2][0], tabela[2][2][1], tabela[2][2][2], tabela[2][2][3]);
+	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[2][3][0], tabela[2][3][1], tabela[2][3][2], tabela[2][3][3]);
+	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[2][4][0], tabela[2][4][1], tabela[2][4][2], tabela[2][4][3]);
+	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[2][5][0], tabela[2][5][1], tabela[2][5][2], tabela[2][5][3]);
 	printf("-");
 	
 	printf("\tTabela 4: Tempo de remocao crescente (apos insercao crescente)\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
-	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][0][0], tabela[0][0][1], tabela[0][0][2], tabela[0][0][3]);
-	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[0][1][0], tabela[0][1][1], tabela[0][1][2], tabela[0][1][3]);
-	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[0][2][0], tabela[0][2][1], tabela[0][2][2], tabela[0][2][3]);
-	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][3][0], tabela[0][3][1], tabela[0][3][2], tabela[0][3][3]);
-	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[0][4][0], tabela[0][4][1], tabela[0][4][2], tabela[0][4][3]);
-	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[0][5][0], tabela[0][5][1], tabela[0][5][2], tabela[0][5][3]);
+	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[3][0][0], tabela[3][0][1], tabela[3][0][2], tabela[3][0][3]);
+	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[3][1][0], tabela[3][1][1], tabela[3][1][2], tabela[3][1][3]);
+	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[3][2][0], tabela[3][2][1], tabela[3][2][2], tabela[3][2][3]);
+	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[3][3][0], tabela[3][3][1], tabela[3][3][2], tabela[3][3][3]);
+	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[3][4][0], tabela[3][4][1], tabela[3][4][2], tabela[3][4][3]);
+	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[3][5][0], tabela[3][5][1], tabela[3][5][2], tabela[3][5][3]);
 	printf("-");
 	
 	printf("\tTabela 5: Tempo de remocao decrescente (apos insercao crescente)\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
-	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][0][0], tabela[0][0][1], tabela[0][0][2], tabela[0][0][3]);
-	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[0][1][0], tabela[0][1][1], tabela[0][1][2], tabela[0][1][3]);
-	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[0][2][0], tabela[0][2][1], tabela[0][2][2], tabela[0][2][3]);
-	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][3][0], tabela[0][3][1], tabela[0][3][2], tabela[0][3][3]);
-	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[0][4][0], tabela[0][4][1], tabela[0][4][2], tabela[0][4][3]);
-	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[0][5][0], tabela[0][5][1], tabela[0][5][2], tabela[0][5][3]);
+	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[4][0][0], tabela[4][0][1], tabela[4][0][2], tabela[4][0][3]);
+	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[4][1][0], tabela[4][1][1], tabela[4][1][2], tabela[4][1][3]);
+	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[4][2][0], tabela[4][2][1], tabela[4][2][2], tabela[4][2][3]);
+	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[4][3][0], tabela[4][3][1], tabela[4][3][2], tabela[4][3][3]);
+	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[4][4][0], tabela[4][4][1], tabela[4][4][2], tabela[4][4][3]);
+	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[4][5][0], tabela[4][5][1], tabela[4][5][2], tabela[4][5][3]);
 	printf("-");
 	
 	printf("\tTabela 6: Tempo de remocao aleatoria (apos insercao aleatoria)\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
-	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][0][0], tabela[0][0][1], tabela[0][0][2], tabela[0][0][3]);
-	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[0][1][0], tabela[0][1][1], tabela[0][1][2], tabela[0][1][3]);
-	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[0][2][0], tabela[0][2][1], tabela[0][2][2], tabela[0][2][3]);
-	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][3][0], tabela[0][3][1], tabela[0][3][2], tabela[0][3][3]);
-	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[0][4][0], tabela[0][4][1], tabela[0][4][2], tabela[0][4][3]);
-	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[0][5][0], tabela[0][5][1], tabela[0][5][2], tabela[0][5][3]);
+	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[5][0][0], tabela[5][0][1], tabela[5][0][2], tabela[5][0][3]);
+	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[5][1][0], tabela[5][1][1], tabela[5][1][2], tabela[5][1][3]);
+	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[5][2][0], tabela[5][2][1], tabela[5][2][2], tabela[5][2][3]);
+	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[5][3][0], tabela[5][3][1], tabela[5][3][2], tabela[5][3][3]);
+	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[5][4][0], tabela[5][4][1], tabela[5][4][2], tabela[5][4][3]);
+	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[5][5][0], tabela[5][5][1], tabela[5][5][2], tabela[5][5][3]);
 	printf("-");
 	
 	printf("\tTabela 7: Tempo de busca (apos insercao crescente)\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
-	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][0][0], tabela[0][0][1], tabela[0][0][2], tabela[0][0][3]);
-	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[0][1][0], tabela[0][1][1], tabela[0][1][2], tabela[0][1][3]);
-	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[0][2][0], tabela[0][2][1], tabela[0][2][2], tabela[0][2][3]);
-	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][3][0], tabela[0][3][1], tabela[0][3][2], tabela[0][3][3]);
-	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[0][4][0], tabela[0][4][1], tabela[0][4][2], tabela[0][4][3]);
-	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[0][5][0], tabela[0][5][1], tabela[0][5][2], tabela[0][5][3]);
+	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[6][0][0], tabela[6][0][1], tabela[6][0][2], tabela[6][0][3]);
+	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[6][1][0], tabela[6][1][1], tabela[6][1][2], tabela[6][1][3]);
+	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[6][2][0], tabela[6][2][1], tabela[6][2][2], tabela[6][2][3]);
+	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[6][3][0], tabela[6][3][1], tabela[6][3][2], tabela[6][3][3]);
+	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[6][4][0], tabela[6][4][1], tabela[6][4][2], tabela[6][4][3]);
+	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[6][5][0], tabela[6][5][1], tabela[6][5][2], tabela[6][5][3]);
 	printf("-");
 	
 	printf("\tTabela 8: Tempo de busca (apos insercao decrescente)\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
-	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][0][0], tabela[0][0][1], tabela[0][0][2], tabela[0][0][3]);
-	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[0][1][0], tabela[0][1][1], tabela[0][1][2], tabela[0][1][3]);
-	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[0][2][0], tabela[0][2][1], tabela[0][2][2], tabela[0][2][3]);
-	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][3][0], tabela[0][3][1], tabela[0][3][2], tabela[0][3][3]);
-	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[0][4][0], tabela[0][4][1], tabela[0][4][2], tabela[0][4][3]);
-	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[0][5][0], tabela[0][5][1], tabela[0][5][2], tabela[0][5][3]);
+	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[7][0][0], tabela[7][0][1], tabela[7][0][2], tabela[7][0][3]);
+	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[7][1][0], tabela[7][1][1], tabela[7][1][2], tabela[7][1][3]);
+	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[7][2][0], tabela[7][2][1], tabela[7][2][2], tabela[7][2][3]);
+	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[7][3][0], tabela[7][3][1], tabela[7][3][2], tabela[7][3][3]);
+	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[7][4][0], tabela[7][4][1], tabela[7][4][2], tabela[7][4][3]);
+	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[7][5][0], tabela[7][5][1], tabela[7][5][2], tabela[7][5][3]);
 	printf("-");
 	
 	printf("\tTabela 9: Tempo de busca (apos insercao aleatoria)\n");
 	printf("\tn=100\tn=1.000\tn=10.000\tn=100.000\n");
-	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][0][0], tabela[0][0][1], tabela[0][0][2], tabela[0][0][3]);
-	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[0][1][0], tabela[0][1][1], tabela[0][1][2], tabela[0][1][3]);
-	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[0][2][0], tabela[0][2][1], tabela[0][2][2], tabela[0][2][3]);
-	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[0][3][0], tabela[0][3][1], tabela[0][3][2], tabela[0][3][3]);
-	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[0][4][0], tabela[0][4][1], tabela[0][4][2], tabela[0][4][3]);
-	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[0][5][0], tabela[0][5][1], tabela[0][5][2], tabela[0][5][3]);
+	printf("BB\t%lf\t%lf\t%lf\t%lf\n", tabela[8][0][0], tabela[8][0][1], tabela[8][0][2], tabela[8][0][3]);
+	printf("LO\t%lf\t%lf\t%lf\t%lf\n", tabela[8][1][0], tabela[8][1][1], tabela[8][1][2], tabela[8][1][3]);
+	printf("LOS\t%lf\t%lf\t%lf\t%lf\n", tabela[8][2][0], tabela[8][2][1], tabela[8][2][2], tabela[8][2][3]);
+	printf("ABB\t%lf\t%lf\t%lf\t%lf\n", tabela[8][3][0], tabela[8][3][1], tabela[8][3][2], tabela[8][3][3]);
+	printf("AVL\t%lf\t%lf\t%lf\t%lf\n", tabela[8][4][0], tabela[8][4][1], tabela[8][4][2], tabela[8][4][3]);
+	printf("LFREQ\t%lf\t%lf\t%lf\t%lf\n", tabela[8][5][0], tabela[8][5][1], tabela[8][5][2], tabela[8][5][3]);
 	printf("-");
 	
 	
