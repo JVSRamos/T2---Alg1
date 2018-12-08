@@ -1087,14 +1087,14 @@ int main(void) {
 	printf("-");
 	
 	
-	//destroi_BB(&estr1);
-	//destroi_LO(&estr2);
-	//destroi_LOS(&estr3);
-	//destroi_ABB(&estr4);
-	//destroi_AVL(&estr5);
-	//destroi_LFREQ(&estr6);
-	//free(usado);
-	//free(numero);
+	destroi_BB(&estr1);
+	destroi_LO(&estr2);
+	destroi_LOS(&estr3);
+	destroi_ABB(&estr4);
+	destroi_AVL(&estr5);
+	destroi_LFREQ(&estr6);
+	free(usado);
+	free(numero);
 
 	return 0;
 }

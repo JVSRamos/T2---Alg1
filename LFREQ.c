@@ -13,7 +13,7 @@ void destroi_LFREQ(LFREQ *l) {
     No_LFREQ *p;
     p = l->ini;
     do {
-        p = p->prox;
+        if (p != NULL) p = p->prox;
         free(p);
     } while (p != l->ini);
     return;
@@ -100,9 +100,6 @@ void remove_LFREQ(LFREQ *l, int x) {
      free(p);
 
     }
-
-
-
 }
 
 
