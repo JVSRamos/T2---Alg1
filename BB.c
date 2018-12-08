@@ -92,7 +92,7 @@ void insere_BB(BB *b, int x) {
 
 void remove_BB(BB *b, int x) {
 
-	int pos = intern_search(b,x);
+	int pos = busca_BB(b,x,0,b->tam_atual);
 	if (pos != -1) {
 		shift_vet(b,pos);
 	}
